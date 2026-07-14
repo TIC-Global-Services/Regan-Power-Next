@@ -1,9 +1,47 @@
-import React from 'react';
+"use client";
+
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { motion, useInView, useMotionValue, useTransform, animate, Variants } from 'framer-motion';
 
 import productReviewBg from '@/assets/home/whychooseus/product_review_bg.png';
+import productreview from '@/assets/home/whychooseus/product_review.png';
 import businessBg from '@/assets/home/whychooseus/bussiness_operating.png';
 import productReviewRatingBg from '@/assets/home/whychooseus/product_review_rating.png';
+
+const AnimatedCounter = ({ from, to }: { from: number; to: number }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const count = useMotionValue(from);
+  const rounded = useTransform(count, (latest) => Math.round(latest).toLocaleString());
+
+  useEffect(() => {
+    if (inView) {
+      const controls = animate(count, to, { duration: 2, ease: "easeOut" });
+      return controls.stop;
+    }
+  }, [inView, to, count]);
+
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+};
+
+const containerVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, scale: 0 },
+  show: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+};
 
 const WhyChooseUs = () => {
   return (
@@ -18,30 +56,42 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-fr">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-fr"
+        >
           
           {/* Left Card - 6x Award Winner */}
-          <div className="bg-[#EEF6EB] rounded-[20px] p-4 flex flex-col h-full md:min-h-[40dvh]">
-            <div className="w-full relative aspect-2/1 rounded-3xl overflow-hidden mb-4 lg:mb-8">
+          <motion.div variants={itemVariants} className="bg-[#EEF6EB] rounded-[20px] p-4 flex flex-col h-full md:min-h-[40dvh]">
+            <div className="w-full relative aspect-2/1 rounded-3xl overflow-hidden mb-4 lg:mb-8 flex items-center justify-center">
               <Image 
                 src={productReviewBg} 
-                alt="Product Review Awards Logo" 
+                alt="Product Review Awards Logo Background" 
                 fill 
-                className="object-cover"
+                className="object-cover z-0"
+              />
+              <Image 
+                src={productreview} 
+                alt="Product Review Logo" 
+                fill
+                className="object-contain p-4 z-10 relative"
               />
             </div>
             <div className="mt-auto pb-4 px-4">
               <h3 className="text-[4rem] lg:text-[6.250rem] font-bold text-black mb-2 tracking-tighter leading-none">
-                6<span className="text-[3rem] lg:text-[4rem]">×</span>
+              <AnimatedCounter from={0} to={6}/><span className="text-[3rem] lg:text-[4rem]">×</span>
               </h3>
               <p className="text-2xl text-black leading-tight font-medium">
                 Product Review Award<br/>Winner
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Middle Card - Installations */}
-          <div className="bg-[#A0CF44] rounded-[32px] p-8 lg:p-12 relative flex flex-col justify-center h-full lg:min-h-[500px] overflow-hidden">
+          <motion.div variants={itemVariants} className="bg-[#A0CF44] rounded-[32px] p-8 lg:p-12 relative flex flex-col justify-center h-full lg:min-h-[500px] overflow-hidden">
             {/* Cutout Effect (Corner Masking via white square + inverse border radius) */}
             <div className="absolute top-0 right-0 w-[88px] h-[88px] bg-white rounded-bl-[40px] z-10 flex items-start justify-end">
               <button className="w-18 h-18 mr-1 mt-1 bg-black rounded-full flex items-center justify-center text-white text-4xl shadow-lg hover:scale-105 transition-transform z-20">
@@ -52,7 +102,7 @@ const WhyChooseUs = () => {
             <div className="relative z-0 flex flex-col gap-10 lg:gap-14">
               <div>
                 <h3 className="text-[3.5rem] lg:text-[6rem] leading-none font-bold text-black tracking-tighter mb-2">
-                  3,000+
+                  <AnimatedCounter from={0} to={3000} />+
                 </h3>
                 <p className="text-3xl text-black font-medium">
                   Battery Installations
@@ -60,20 +110,20 @@ const WhyChooseUs = () => {
               </div>
               <div>
                 <h3 className="text-[3.5rem] lg:text-[6rem] leading-none font-bold text-black tracking-tighter mb-2">
-                  45,000+
+                  <AnimatedCounter from={0} to={45000} />+
                 </h3>
                 <p className="text-3xl text-black font-medium">
                   Solar Installations
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column - Stacked Cards */}
           <div className="flex flex-col gap-6 h-full min-h-[400px]">
             
             {/* Top Right Card - 23 Years */}
-            <div className="bg-[#f0f6ec] rounded-[20px] p-8 relative overflow-hidden flex-grow flex flex-col justify-center min-h-[250px]">
+            <motion.div variants={itemVariants} className="bg-[#f0f6ec] rounded-[20px] p-8 relative overflow-hidden flex-grow flex flex-col justify-center min-h-[250px]">
               <div className="absolute right-[-20%] bottom-30 w-full h-full opacity-90 z-0">
                 <Image 
                   src={businessBg} 
@@ -84,16 +134,16 @@ const WhyChooseUs = () => {
               </div>
               <div className="relative z-10 w-[75%]">
                 <h3 className="text-[3.5rem] lg:text-[4.5rem] font-bold text-black leading-none mb-4 tracking-tighter">
-                  23<br/>Years
+                  <AnimatedCounter from={0} to={23}/><br/>Years
                 </h3>
                 <p className="text-2xl text-black font-medium leading-snug">
                   In Business, Operating From<br/>Canning Vale Office
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Bottom Right Card - 5 Star Rating */}
-            <div className="rounded-[32px] relative overflow-hidden h-[150px] p-8 flex items-center">
+            <motion.div variants={itemVariants} className="rounded-[32px] relative overflow-hidden h-[150px] p-8 flex items-center">
               <Image 
                 src={productReviewRatingBg} 
                 alt="Green sphere background" 
@@ -102,17 +152,17 @@ const WhyChooseUs = () => {
               />
               <div className="relative z-10 flex items-center gap-6">
                 <h3 className="text-[4rem] font-bold text-white flex items-center gap-2 leading-none tracking-tighter">
-                  5 <span className="text-[2.5rem] font-extrabold">★</span>
+                  <AnimatedCounter from={0} to={5}/> <span className="text-[2.5rem] font-extrabold">★</span>
                 </h3>
                 <p className="text-white text-3xl tracking-tighter font-medium leading-snug">
                   Ratings On<br/>ProductReview
                 </p>
               </div>
-            </div>
+            </motion.div>
 
           </div>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   );

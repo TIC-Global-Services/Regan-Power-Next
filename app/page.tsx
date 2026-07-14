@@ -5,6 +5,9 @@ import WhyChooseUs from "@/components/home/whychooseus";
 import Expertise from "@/components/home/expertise";
 import Partners from "@/components/home/partners";
 import ZeroInterestFinancing from "@/components/home/zerointrestfinancing";
+import GetSolar from "@/reuseables/getsolar";
+import FAQ from "@/reuseables/faq";
+import FeatureCardGrid from "@/reuseables/FeatureCardGrid";
 
 export default function Home() {
   return (
@@ -15,6 +18,9 @@ export default function Home() {
       <Expertise />
       <Partners />
       <ZeroInterestFinancing />
+      <GetSolar/>
+      <FAQ/>
+      <FeatureCardGrid/>
     </div>
   );
 }
