@@ -1,0 +1,251 @@
+'use client';
+
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowUpRight, ChevronDown, Plus } from 'lucide-react';
+import gsap from 'gsap';
+
+const navItems = [
+  {
+    name: 'Solar System',
+    href: '#',
+    subItems: [
+      { name: 'Residential Solar', href: '#' },
+      { name: 'Solar Panels', href: '#' },
+      { name: 'Inverters', href: '#' },
+    ],
+  },
+  {
+    name: 'Battery Storage',
+    href: '#',
+    subItems: [
+      { name: 'Tesla Powerwall', href: '#' },
+      { name: 'BYD Battery', href: '#' },
+    ],
+  },
+  { name: 'EV Charging', href: '#' },
+  { name: 'Commercial & Off Grid', href: '#' },
+  { name: 'About Us', href: '#' },
+  { name: 'Reviews', href: '#' },
+  { name: 'Blogs', href: '#' },
+  { name: 'Press&Media', href: '#' },
+];
+
+const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  const overlayRef = useRef<HTMLDivElement | null>(null);
+  const menuLinksRef = useRef<HTMLUListElement | null>(null);
+  const plusIconRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (overlayRef.current) {
+      gsap.set(overlayRef.current, {
+        clipPath: "circle(0% at 90% 10%)",
+        visibility: "hidden",
+        opacity: 0,
+      });
+    }
+
+    if (menuLinksRef.current) {
+      gsap.set(menuLinksRef.current.children, { opacity: 0, y: 30 });
+    }
+  }, []);
+
+  const openMenu = useCallback(() => {
+    if (!overlayRef.current || !plusIconRef.current || !menuLinksRef.current) return;
+
+    gsap.set(overlayRef.current, { visibility: "visible", opacity: 1 });
+
+    gsap.to(plusIconRef.current, {
+      rotation: 45,
+      scale: 1.1,
+      duration: 0.4,
+      ease: "power2.out"
+    });
+
+    gsap.to(overlayRef.current, {
+      clipPath: "circle(150% at 90% 10%)",
+      duration: 0.6,
+      ease: "power3.inOut",
+    });
+
+    gsap.to(menuLinksRef.current.children, {
+      opacity: 1,
+      y: 0,
+      stagger: 0.05,
+      delay: 0.3,
+      duration: 0.4,
+      ease: "power2.out"
+    });
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    if (!overlayRef.current || !plusIconRef.current || !menuLinksRef.current) return;
+
+    gsap.to(plusIconRef.current, {
+      rotation: 0,
+      scale: 1,
+      duration: 0.3,
+      ease: "power2.out"
+    });
+
+    gsap.to(menuLinksRef.current.children, {
+      opacity: 0,
+      y: 20,
+      stagger: 0.03,
+      duration: 0.3,
+      ease: "power2.in"
+    });
+
+    gsap.to(overlayRef.current, {
+      clipPath: "circle(0% at 90% 10%)",
+      duration: 0.5,
+      delay: 0.2,
+      ease: "power3.inOut",
+      onComplete: () => {
+        gsap.set(overlayRef.current, {
+          visibility: "hidden",
+          opacity: 0,
+        });
+      },
+    });
+  }, []);
+
+  const toggleMenu = useCallback(() => {
+    setIsMobileMenuOpen((p) => {
+      !p ? openMenu() : closeMenu();
+      return !p;
+    });
+  }, [openMenu, closeMenu]);
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 w-full py-6 px-4 md:px-8">
+      <div className="px-[5%] flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex-shrink-0 z-50">
+          <Image
+            src="/regen_logo_nav.png"
+            alt="Regen Power"
+            width={180}
+            height={60}
+            className="h-10 w-auto object-contain"
+          />
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center bg-[#63B84666] backdrop-blur-md rounded-full px-2 py-1.5 shadow-sm border-1 border-[#63B846]">
+          <ul className="flex items-center text-sm font-medium text-black">
+            {navItems.map((item, index) => (
+              <li key={index} className="relative group px-3 py-2">
+                <Link 
+                  href={item.href} 
+                  className="flex items-center gap-1 hover:text-white transition-colors text-black"
+                >
+                  {item.name}
+                  {item.subItems && (
+                    <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
+                  )}
+                </Link>
+
+                {/* Dropdown Menu */}
+                {item.subItems && (
+                  <div className="absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                    <div className="bg-white rounded-xl shadow-xl overflow-hidden min-w-[200px] border border-gray-100 p-2">
+                      <ul className="flex flex-col">
+                        {item.subItems.map((subItem, subIndex) => (
+                          <li key={subIndex}>
+                            <Link 
+                              href={subItem.href}
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#8dc63f]/10 hover:text-[#8dc63f] rounded-lg transition-colors"
+                            >
+                              {subItem.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Contact Us Button (Desktop) */}
+        <div className="hidden lg:flex">
+          <Link 
+            href="#" 
+            className="flex items-center gap-3 bg-[#63B84666] backdrop-blur-md text-black px-1.5 py-1.5 rounded-full hover:bg-[#8dc63f] transition-all border-1 border-[#63B846] group"
+          >
+            <span className="pl-4 font-medium text-sm">Contact Us</span>
+            <div className="bg-[#63B846] p-2 rounded-full group-hover:scale-105 transition-transform">
+              <ArrowUpRight size={16} strokeWidth={2.5} />
+            </div>
+          </Link>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="lg:hidden z-50 text-[#8dc63f] bg-white p-2 rounded-full shadow-md hover:scale-105 transition-transform"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <div ref={plusIconRef}>
+            <Plus size={24} strokeWidth={2.5} />
+          </div>
+        </button>
+
+        {/* Mobile Navigation GSAP Overlay */}
+        <div 
+          ref={overlayRef}
+          className="fixed inset-0 bg-[#0a0a0a]/95 backdrop-blur-2xl -z-10 lg:hidden flex flex-col pt-28 px-8"
+        >
+          <ul ref={menuLinksRef} className="flex flex-col gap-6 overflow-y-auto pb-20">
+            {navItems.map((item, index) => (
+              <li key={index} className="flex flex-col gap-3">
+                <Link 
+                  href={item.href} 
+                  className="text-3xl font-medium text-white flex justify-between items-center hover:text-[#8dc63f] transition-colors"
+                  onClick={() => {
+                    if (!item.subItems) toggleMenu();
+                  }}
+                >
+                  {item.name}
+                </Link>
+                {item.subItems && (
+                  <ul className="flex flex-col gap-3 pl-4 border-l border-white/10 mt-2">
+                    {item.subItems.map((subItem, subIndex) => (
+                      <li key={subIndex}>
+                        <Link 
+                          href={subItem.href}
+                          className="text-gray-400 py-1 block text-xl hover:text-white transition-colors"
+                          onClick={toggleMenu}
+                        >
+                          {subItem.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+            <li className="mt-8">
+               <Link 
+                href="#" 
+                className="flex items-center justify-center gap-3 bg-[#8dc63f] text-white px-6 py-4 rounded-full font-medium hover:bg-[#7ebd35] transition-colors"
+                onClick={toggleMenu}
+              >
+                <span className="text-xl">Contact Us</span>
+                <ArrowUpRight size={24} />
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Navbar;

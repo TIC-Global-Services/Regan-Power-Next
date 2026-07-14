@@ -1,15 +1,44 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+import SmoothScroller from "@/utils/SmoothScroller";
+import Navbar from "@/reuseables/Navbar";
+import Footer from "@/reuseables/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const aeonik = localFont({
+  src: [
+    {
+      path: '../utils/fonts/AeonikTRIAL-Light.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../utils/fonts/AeonikTRIAL-LightItalic.otf',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: '../utils/fonts/AeonikTRIAL-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../utils/fonts/AeonikTRIAL-RegularItalic.otf',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../utils/fonts/AeonikTRIAL-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../utils/fonts/AeonikTRIAL-BoldItalic.otf',
+      weight: '700',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-aeonik',
 });
 
 export const metadata: Metadata = {
@@ -25,9 +54,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${aeonik.variable} ${aeonik.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SmoothScroller>
+          <Navbar />
+          {children}
+          <Footer />
+        </SmoothScroller>
+      </body>
     </html>
   );
 }
