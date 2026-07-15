@@ -11,7 +11,7 @@ const navItems = [
     name: 'Solar System',
     href: '#',
     subItems: [
-      { name: 'Residential Solar', href: '#' },
+      { name: 'Residential Solar', href: '/solar' },
       { name: 'Solar Panels', href: '#' },
       { name: 'Inverters', href: '#' },
     ],

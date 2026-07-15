@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
+import { StaticImageData } from 'next/image';
 import getSolarBg from '@/assets/for_your_home.png';
 import Fade from './fade';
 
@@ -9,13 +10,15 @@ interface GetSolarProps {
   mainTitle?: string;
   description?: string;
   buttonText?: string;
+  bgImage?: string | StaticImageData;
 }
 
 const GetSolar = ({
   subtitle = "Get A Solar System Designed",
   mainTitle = "For Your Home",
   description = "Tell us a few details about your home and power use, and one of our Perth-based CEC-accredited designers will build a system tailored to your roof, your household, and your budget. Free, no-obligation, and no high-pressure sales calls — just a proper engineering recommendation.",
-  buttonText = "Get My Free Quote"
+  buttonText = "Get My Free Quote",
+  bgImage = getSolarBg
 }: GetSolarProps) => {
   return (
     <Fade>
@@ -23,7 +26,7 @@ const GetSolar = ({
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src={getSolarBg}
+            src={bgImage}
             alt="Solar Panel Installation on Roof"
             fill
             className="object-cover object-bottom"
