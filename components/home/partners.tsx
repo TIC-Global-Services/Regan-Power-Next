@@ -8,6 +8,7 @@ import eupdLogo from '@/assets/home/patners/smart_energy.png';
 import fast100Logo from '@/assets/home/patners/clean_energy.png';
 import financialtimesLogo from '@/assets/home/patners/approved.png';
 import Fade from '@/reuseables/fade';
+import SectionHeader from '@/reuseables/SectionHeader';
 
 interface LogoItem {
   name: string;
@@ -30,12 +31,14 @@ const Partners = () => {
     <section className="py-16 md:py-24 bg-white overflow-hidden">
       <div className="px-[5%]">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <p className="text-base md:text-lg text-gray-500 mb-2">Trusted Relationships</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-black leading-tight tracking-tight">
-            <span className="text-[#63B846] font-medium tracking-tighter">Partners</span> & <span className="text-[#63B846] font-medium tracking-tighter">Memberships</span>
-          </h2>
-        </div>
+        <SectionHeader
+          subtitle="Trusted Relationships"
+          title={<><span className="text-[#63B846] font-medium tracking-tighter">Partners</span> & <span className="text-[#63B846] font-medium tracking-tighter">Memberships</span></>}
+          align="center"
+          subtitleClass="text-base md:text-lg text-gray-500 mb-2 font-normal"
+          titleClass="text-3xl md:text-4xl lg:text-5xl font-light text-black leading-tight tracking-tight"
+          className="mb-16 md:mb-20 mx-auto"
+        />
         <Fade>
           <div className="max-w-3xl mx-auto">
             {/* Partners Sub-section */}

@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import SectionHeader from "@/reuseables/SectionHeader";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
 
@@ -114,18 +115,16 @@ const BatteryQuote: React.FC = () => {
             <div className="px-[5%]">
                 <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-16">
                     <div className="w-full lg:w-[45%] flex flex-col">
-                        <div className="mb-6 lg:-space-y-4">
-                            <p className="text-lg md:text-[1.6rem] font-normal tracking-tight text-gray-900">
-                                Get Your Free Solar &amp;
-                            </p>
-                            <h2 className="text-3xl md:text-4xl lg:text-[4.5rem] font-normal text-[#63B846] tracking-tight leading-tight">
-                                Battery Quote
-                            </h2>
-                        </div>
-
-                        <p className="text-sm md:text-base text-gray-500  mb-8 leading-relaxed">
-                            Our technical sales team will design a system tailored to your home, usage, and budget. Most quotes delivered within 24 hours.
-                        </p>
+                        <SectionHeader
+                            subtitle="Get Your Free Solar &"
+                            title="Battery Quote"
+                            description="Our technical sales team will design a system tailored to your home, usage, and budget. Most quotes delivered within 24 hours."
+                            align="left"
+                            subtitleClass="md:text-[1.6rem] font-normal tracking-tight text-gray-900"
+                            titleClass="lg:text-[4.5rem] font-normal text-[#63B846] tracking-tight leading-tight"
+                            className="mb-8 lg:-space-y-4"
+                            descClass="text-gray-500 mb-8 leading-relaxed"
+                        />
 
                         <div className="relative w-full max-w-lg">
                             <Image

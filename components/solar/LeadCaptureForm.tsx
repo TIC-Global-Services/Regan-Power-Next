@@ -2,9 +2,8 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Reveal from '@/reuseables/Reveal';
-import Fade from '@/reuseables/fade';
 import CtaButton from '@/reuseables/CtaButton';
+import SectionHeader from '@/reuseables/SectionHeader';
 
 import quoteImg from '@/assets/solar/batteryquote.png';
 
@@ -37,21 +36,13 @@ const LeadCaptureForm = () => {
 
           {/* Left Column: Heading and 3D Graphic */}
           <div className="lg:col-span-5 flex flex-col justify-center h-full">
-            <Reveal>
-              <span className="text-sm md:text-2xl uppercase tracking-tight font-medium mb-1 block">
-                Get Your Free Solar &
-              </span>
-              <h2 className="text-4xl md:text-5xl lg:text-[4.5rem] text-[#63B846] leading-none tracking-tight mb-6">
-                Battery Quote
-              </h2>
-            </Reveal>
-
-            <Fade delay={0.2}>
-              <p className="text-sm md:text-base leading-tight mb-8">
-                Our Technical Sales Team Will Design A System Tailored To Your Home, Usage, And Budget.
-                Most Quotes Delivered Within 24 Hours.
-              </p>
-            </Fade>
+            <SectionHeader
+              subtitle="Get Your Free Solar &"
+              title="Battery Quote"
+              description="Our Technical Sales Team Will Design A System Tailored To Your Home, Usage, And Budget. Most Quotes Delivered Within 24 Hours."
+              align="left"
+              descClass="mb-8"
+            />
 
             {/* 3D Isometric building logo visual */}
             <div className="relative w-full aspect-square max-w-[360px] mx-auto lg:mx-0 rounded-2xl overflow-hidden flex items-center justify-center">

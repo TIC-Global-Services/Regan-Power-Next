@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Marquee from "@/reuseables/Marquee";
+import SectionHeader from "@/reuseables/SectionHeader";
 
 import aikoLogo from "@/assets/panels/aiko_logo.png";
 import canadianSolarLogo from "@/assets/panels/canadiansolar_logo.png";
@@ -88,14 +89,14 @@ const Craftsmanship: React.FC = () => {
   return (
     <section className="py-16 md:py-24 bg-white overflow-hidden">
       <div className="px-[5%]">
-        <div className="text-center mb-10 md:mb-14 lg:-space-y-4">
-          <p className="text-lg md:text-[2rem] font-normal tracking-tight">
-            Industry-Leading Brands &amp;
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-[5rem] font-normal text-[#63B846] tracking-tight">
-            Craftsmanship
-          </h2>
-        </div>
+        <SectionHeader
+          subtitle="Industry-Leading Brands &"
+          title="Craftsmanship"
+          align="center"
+          subtitleClass="md:text-[2rem] font-normal tracking-tight text-black"
+          titleClass="lg:text-[5rem] font-normal text-[#63B846] tracking-tight"
+          className="mb-10 md:mb-14 lg:-space-y-4"
+        />
 
       
         <div className="flex justify-center mb-10 md:mb-14">

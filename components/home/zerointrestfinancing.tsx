@@ -7,6 +7,7 @@ import productReviewBg from '@/assets/home/zerointrest/productReviewBg.png';
 import productReviewRating from '@/assets/home/zerointrest/productReviewRating.png';
 import Fade from '@/reuseables/fade';
 import Reveal from '@/reuseables/Reveal';
+import SectionHeader from '@/reuseables/SectionHeader';
 
 interface FinancingCard {
   title: string;
@@ -43,12 +44,14 @@ const ZeroInterestFinancing = () => {
       <Fade>
         <div className="px-[5%]">
           {/* Section Header */}
-          <div className="text-center mb-12 md:mb-16 lg:-space-y-5">
-            <p className="text-lg md:text-[2.125rem] lg:leading-1.2">Smart Solar Savings &</p>
-            <h2 className="text-3xl md:text-4xl lg:text-[5rem] font-light text-black leading-tight tracking-tight">
-              <span className="text-[#63B846] font-medium tracking-tighter">Zero-Interest Financing</span>
-            </h2>
-          </div>
+          <SectionHeader
+            subtitle="Smart Solar Savings &"
+            title={<span className="text-[#63B846] font-medium tracking-tighter">Zero-Interest Financing</span>}
+            align="center"
+            subtitleClass="md:text-[2.125rem] lg:leading-1.2 font-normal text-black"
+            titleClass="lg:text-[5rem] font-light text-black tracking-tight leading-tight"
+            className="mb-12 md:mb-16 lg:-space-y-5"
+          />
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 px-[5%]">

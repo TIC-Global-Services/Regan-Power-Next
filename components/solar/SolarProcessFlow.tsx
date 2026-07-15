@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Reveal from '@/reuseables/Reveal';
+import SectionHeader from '@/reuseables/SectionHeader';
 import img01 from '@/assets/solar/foursteps/01.png';
 import img02 from '@/assets/solar/foursteps/02.png';
 import img03 from '@/assets/solar/foursteps/03.png';
@@ -40,14 +41,12 @@ const SolarProcessFlow = () => {
     <section className="py-16 md:py-24 bg-white">
       <div className="px-[5%]">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="text-sm md:text-base text-gray-500 uppercase tracking-wider font-medium mb-1 block">
-            Sun To Synergy Bill
-          </span>
-          <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-normal text-[#63B846] leading-none tracking-tight">
-            In Four Steps
-          </h2>
-        </div>
+        <SectionHeader
+          subtitle="Sun To Synergy Bill"
+          title="In Four Steps"
+          align="center"
+          className="mb-16"
+        />
 
         {/* Horizontal Process Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">

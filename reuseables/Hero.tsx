@@ -1,7 +1,6 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import CtaButton from './CtaButton';
 
 export interface HeroProps {
     mediaSrc: string | StaticImageData;
@@ -75,17 +74,11 @@ const Hero: React.FC<HeroProps> = ({
 
                 {/* CTA Button */}
                 <div className="flex-shrink-0 pb-2">
-                    <Link
+                    <CtaButton
                         href={ctaLink}
-                        className="inline-flex items-center gap-3 bg-[#8dc63f]/80 backdrop-blur-md text-white px-2 py-2 rounded-full hover:bg-[#8dc63f] transition-all duration-300 border border-white/20 shadow-lg group"
-                    >
-                        <span className="pl-4 font-medium text-sm md:text-base tracking-wide">
-                            {ctaText}
-                        </span>
-                        <div className="bg-[#659129] p-2.5 rounded-full group-hover:scale-105 group-hover:bg-[#567c22] transition-all">
-                            <ArrowUpRight size={18} strokeWidth={2.5} />
-                        </div>
-                    </Link>
+                        text={ctaText}
+                        textColor="text-white"
+                    />
                 </div>
             </div>
         </section>

@@ -4,6 +4,7 @@ import React from "react";
 import Image, { StaticImageData } from "next/image";
 
 import Marquee from "@/reuseables/Marquee";
+import SectionHeader from "@/reuseables/SectionHeader";
 
 import googleRating from "@/assets/home/realstories/google_rating.png";
 import bestRatedBatch from "@/assets/home/realstories/best_rated_batch.png";
@@ -144,14 +145,14 @@ const RealStories: React.FC = () => {
     return (
         <section className="py-16 md:py-24 bg-white overflow-hidden">
 
-            <div className="px-[5%] text-center mb-10 md:mb-14">
-                <p className="text-xl md:text-2xl text-gray-500 font-normal italic tracking-tight">
-                    Real Stories.
-                </p>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mt-1">
-                    <span className="text-[#63B846]">Real Results.</span>
-                </h2>
-            </div>
+            <SectionHeader
+              subtitle="Real Stories."
+              title={<span className="text-[#63B846]">Real Results.</span>}
+              align="center"
+              subtitleClass="text-xl md:text-2xl text-gray-500 font-normal italic tracking-tight mb-1 block normal-case"
+              titleClass="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mt-1"
+              className="mb-10 md:mb-14 mx-auto"
+            />
 
 
             <div className="px-[5%] mb-12 md:mb-16">

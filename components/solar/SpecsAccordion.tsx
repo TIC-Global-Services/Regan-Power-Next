@@ -1,6 +1,5 @@
 import React from 'react';
-import Reveal from '@/reuseables/Reveal';
-import Fade from '@/reuseables/fade';
+import SectionHeader from '@/reuseables/SectionHeader';
 
 const specItems = [
   {
@@ -42,22 +41,13 @@ const SpecsAccordion = () => {
       <div className="px-[5%] mx-auto">
 
         {/* Header */}
-        <div className="mb-16">
-          <Reveal>
-            <span className="text-sm md:text-2xl uppercase tracking-tight font-medium mb-1 block">
-              Five Specs That Actually
-            </span>
-            <h2 className="text-4xl md:text-5xl text-[#63B846] leading-none tracking-tight mb-4">
-              Affects Your Returns
-            </h2>
-          </Reveal>
-          <Fade delay={0.2}>
-            <p className="text-sm md:text-sm leading-tight max-w-3xl">
-              Most Solar Brochures List A Dozen Specifications, Half Of Which Have No Meaningful Impact On Your Long-Term Savings.
-              These Five Are The Ones Worth Understanding.
-            </p>
-          </Fade>
-        </div>
+        <SectionHeader
+          subtitle="Five Specs That Actually"
+          title="Affects Your Returns"
+          description="Most Solar Brochures List A Dozen Specifications, Half Of Which Have No Meaningful Impact On Your Long-Term Savings. These Five Are The Ones Worth Understanding."
+          align="left"
+          className="mb-16"
+        />
 
         {/* Tabular Layout */}
         <div className="flex flex-col border-t border-gray-100">

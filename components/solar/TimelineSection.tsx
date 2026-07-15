@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Reveal from '@/reuseables/Reveal';
-import Fade from '@/reuseables/fade';
 import CtaButton from '@/reuseables/CtaButton';
+import SectionHeader from '@/reuseables/SectionHeader';
 
 import consultationImg from '@/assets/solar/consultation.png';
 import installImg from '@/assets/solar_battery_charging.png'; // fallback or related visual
@@ -58,21 +58,13 @@ const TimelineSection = () => {
 
           {/* Left Column: Timeline List */}
           <div>
-            <Reveal>
-              <span className="text-sm md:text-2xl uppercase tracking-tight mb-1 block">
-                From First Call To Switch-On
-              </span>
-              <h2 className="text-4xl md:text-5xl lg:text-[4.5rem] text-[#63B846] tracking-tight mb-6">
-                Often In Two Weeks
-              </h2>
-            </Reveal>
-
-            <Fade delay={0.2}>
-              <p className="text-sm md:text-base leading-tight mb-8">
-                Every Regen Power Install Follows The Same Six-Step Process. Our In-House Team Handles The Engineering,
-                Paperwork, And Physical Installation — There&apos;s No Subcontracting And No Handoff Between Companies.
-              </p>
-            </Fade>
+            <SectionHeader
+              subtitle="From First Call To Switch-On"
+              title="Often In Two Weeks"
+              description="Every Regen Power Install Follows The Same Six-Step Process. Our In-House Team Handles The Engineering, Paperwork, And Physical Installation — There's No Subcontracting And No Handoff Between Companies."
+              align="left"
+              descClass="mb-8"
+            />
 
 
 
@@ -82,10 +74,7 @@ const TimelineSection = () => {
                 href="#quote-form"
                 text="Start With A Free Consultation"
                 textColor="text-white"
-                bgClass="bg-[#63B846]/50 backdrop-blur-md"
-                borderClass="border border-white/20"
-                hoverClass="hover:bg-[#63B846]"
-                className="shadow-lg"
+
               />
             </Reveal>
           </div>

@@ -3,8 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Reveal from '@/reuseables/Reveal';
-import Fade from '@/reuseables/fade';
 import CtaButton from '@/reuseables/CtaButton';
+import SectionHeader from '@/reuseables/SectionHeader';
 
 import dailyPowerImg from '@/assets/solar/howbig/dailypower.png';
 import householdProfileImg from '@/assets/solar/howbig/householdprofile.png';
@@ -47,33 +47,22 @@ const SizingGuide = () => {
       <div className="px-[5%] mx-auto">
 
         {/* Header Block */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <Reveal>
-            <span className="text-sm md:text-2xl uppercase tracking-tight font-medium mb-1 block">
-              How Big Should My
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] text-[#63B846] leading-none tracking-tight mb-6">
-              Solar System Be?
-            </h2>
-          </Reveal>
+        <SectionHeader
+          subtitle="How Big Should My"
+          title="Solar System Be?"
+          description="The Right System Size Depends On Four Things: Your Daily Power Use, Your Household Size, The Phase Type Of Your Home's Power Supply, And How Much Usable Roof Space You Have. Here's How To Work It Out."
+          align="center"
+          className="mx-auto mb-12"
+          descClass="mb-8"
+        />
 
-          <Fade delay={0.2}>
-            <p className="text-sm md:text-sm leading-tight max-w-3xl mb-8">
-              The Right System Size Depends On Four Things: Your Daily Power Use, Your Household Size,
-              The Phase Type Of Your Home&apos;s Power Supply, And How Much Usable Roof Space You Have.
-              Here&apos;s How To Work It Out.
-            </p>
-          </Fade>
-
-          {/* CTA Link */}
+        {/* CTA Link */}
+        <div className="text-center">
           <Reveal delay={0.3} className="inline-block">
             <CtaButton
               href="#quote-form"
               text="Get A Sizing Recommendation For My Home"
               textColor="text-black"
-              bgClass="bg-[#63B846]/10"
-              borderClass="border border-[#63B846]/20"
-              hoverClass="hover:bg-[#63B846] hover:text-white"
             />
           </Reveal>
         </div>

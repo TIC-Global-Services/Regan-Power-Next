@@ -3,8 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Reveal from '@/reuseables/Reveal';
-import Fade from '@/reuseables/fade';
 import CtaButton from '@/reuseables/CtaButton';
+import SectionHeader from '@/reuseables/SectionHeader';
 
 import canadianSolarImg from '@/assets/solar/brands/canadiansolar.png';
 import jaSolarImg from '@/assets/solar/brands/jasolar.png';
@@ -28,34 +28,23 @@ const SolarBrandsGrid = () => {
       <div className="px-[5%] max-w-6xl mx-auto">
 
         {/* Header Block */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <Reveal>
-            <span className="text-sm md:text-3xl uppercase tracking-wider font-normal mb-1 block">
-              Six Tier-1 Panel Brands
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-[4.5rem] font-normal text-[#63B846] leading-none tracking-tight mb-6">
-              One Quality Standard
-            </h2>
-          </Reveal>
+        <SectionHeader
+          subtitle="Six Tier-1 Panel Brands"
+          title="One Quality Standard"
+          description="All Our Panels Are BloombergNEF Tier-1, Trusted, Proven, And Built For The Long Run. These Are Manufacturers You Can Rely On 25 Years From Now. We Use N-Type TOPCon Cells, Today’s Standard For Performance. More Efficiency, Better Low-Light Output, And Less Degradation Than Older Tech."
+          align="center"
+          subtitleClass="font-normal text-[1.875rem] leading-[1.2]"
+          descClass="font-normal mb-8 leading-tight"
+          className="mx-auto mb-12"
+        />
 
-          <Fade delay={0.2}>
-            <p className="text-sm leading-tight font-normal mb-8">
-              All Our Panels Are BloombergNEF Tier-1, Trusted, Proven, And Built For The Long Run.
-              These Are Manufacturers You Can Rely On 25 Years From Now. We Use N-Type TOPCon Cells,
-              Today’s Standard For Performance. More Efficiency, Better Low-Light Output, And Less
-              Degradation Than Older Tech.
-            </p>
-          </Fade>
-
-          {/* CTA Link */}
+        {/* CTA Link */}
+        <div className="text-center">
           <Reveal delay={0.3} className="inline-block">
             <CtaButton
               href="#quote-form"
               text="See Our Full Panel Range"
               textColor="text-black"
-              bgClass="bg-[#63B846]/40"
-              borderClass="border border-[#63B846]/20"
-              hoverClass="hover:bg-[#63B846] hover:text-white"
             />
           </Reveal>
         </div>

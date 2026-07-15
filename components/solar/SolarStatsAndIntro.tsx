@@ -1,8 +1,9 @@
 "use client";
 
 import React from 'react';
-import Reveal from '@/reuseables/Reveal';
 import Fade from '@/reuseables/fade';
+import Marquee from '@/reuseables/Marquee';
+import SectionHeader from '@/reuseables/SectionHeader';
 
 const tickerItems = [
   "45,000+ Solar",
@@ -21,77 +22,48 @@ const SpacerIcon = () => (
 );
 
 const SolarStatsAndIntro = () => {
-  const renderMarqueeList = (ariaHidden = false) => (
-    <div 
-      className="flex shrink-0 items-center gap-6 md:gap-8 px-3 md:px-4" 
-      aria-hidden={ariaHidden ? "true" : undefined}
-    >
-      {tickerItems.map((item, index) => (
-        <React.Fragment key={index}>
-          <div className="flex items-center gap-3 text-black text-xl md:text-3xl font-normal tracking-tight">
-            <span className="text-[#63B846] font-normal">{item.split(" ")[0]}</span>
-            <span className="text-black font-normal">{item.split(" ").slice(1).join(" ")}</span>
-          </div>
-          <SpacerIcon />
-        </React.Fragment>
-      ))}
-    </div>
-  );
-
   return (
     <section className="bg-white overflow-hidden py-10 md:py-16">
-      {/* Custom Styles for Infinite Marquee */}
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        @keyframes marquee-scroll {
-          0% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-50%, 0, 0); }
-        }
-        .animate-marquee-scroll {
-          display: flex;
-          width: max-content;
-          animation: marquee-scroll 30s linear infinite;
-        }
-      `}} />
 
       {/* Horizontal Ticker */}
       <div className="relative w-full bg-white py-4 overflow-hidden select-none">
-        {/* Fades at the ends */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
-
-        {/* Scrolling Content Track */}
-        <div className="animate-marquee-scroll">
-          {renderMarqueeList(false)}
-          {renderMarqueeList(true)}
-        </div>
+        <Marquee speed={30} gap={32} pauseOnHover={false}>
+          {tickerItems.map((item, index) => (
+            <React.Fragment key={index}>
+              <div className="flex items-center gap-3 text-black text-xl md:text-3xl font-normal tracking-tight">
+                <span className="text-[#63B846] font-normal">{item.split(" ")[0]}</span>
+                <span className="text-black font-normal">{item.split(" ").slice(1).join(" ")}</span>
+              </div>
+              <SpacerIcon />
+            </React.Fragment>
+          ))}
+        </Marquee>
       </div>
 
       {/* Concept Introduction Text Block */}
-      <div className="px-[5%] max-w-5xl mx-auto mt-16 md:mt-24 text-center">
-        <Reveal>
-          <span className="text-sm md:text-base text-gray-500 uppercase tracking-wider font-medium mb-2 block">
-            A Solar System Is Two Things
-          </span>
-          <h2 className="text-4xl md:text-6xl lg:text-[4rem] font-bold text-[#63B846] leading-none tracking-tight mb-8">
-            Working Together.
-          </h2>
-        </Reveal>
+      <div className="px-[5%] mx-auto mt-16 md:mt-24 text-left">
+        <SectionHeader
+          subtitle="A Solar System Is Two Things"
+          title="Working Together."
+          align="left"
+          subtitleClass="text-xl md:text-2xl font-light text-black mb-2 block normal-case"
+          titleClass="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-tighter mb-12"
+        />
 
         <Fade delay={0.2} duration={0.8}>
-          <div className="text-black text-lg md:text-2xl font-light leading-relaxed tracking-wide text-left max-w-4xl mx-auto space-y-6">
+          <div className="text-center max-w-4xl mx-auto text-black text-lg md:text-3xl font-light leading-tight tracking-tight space-y-6">
             <p>
               At its simplest, a rooftop solar system is a partnership between two pieces of hardware:
               the panels that generate energy from the sun, and the inverter that converts it into power your
               home can actually use. Everything else — mounting rails, isolators, monitoring, cabling — exists
               to support those two components.
             </p>
-            <p>
-              The quality of the panels decides <span className="font-medium text-black">how much energy you generate</span>. The quality of
-              the inverter decides <span className="font-medium text-black">how much of that energy reaches your appliances</span>,
+            <p className="text-gray-400">
+              <span className="text-black">The quality of the panels decides</span> how much energy you generate. The quality of
+              the inverter decides how much of that energy reaches your appliances,
               year after year, through 40°C Perth summers.
             </p>
-            <p className="text-black/60">
+            <p className="text-gray-400">
               Getting both right is the difference between a system that pays back in five years and one that
               underperforms for twenty-five. Regen Power only installs Tier-1 panels paired with premium
               European inverters — no compromises, no budget substitutes.

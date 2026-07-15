@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Reveal from '@/reuseables/Reveal';
 import Fade from '@/reuseables/fade';
+import SectionHeader from '@/reuseables/SectionHeader';
 import stringBg from '@/assets/solar/string.png';
 import hybridBg from '@/assets/solar_battery_charging.png'; // Using related high-quality asset for hybrid
 import microBg from '@/assets/5_way.png'; // Using related high-quality asset for micro
@@ -60,14 +60,12 @@ const InverterSlider = () => {
         {/* Split Header */}
         <div className="flex flex-col lg:flex-row items-start justify-between gap-6 mb-12">
           <div className="lg:max-w-2xl">
-            <Reveal>
-              <span className="text-sm md:text-2xl uppercase tracking-wider font-medium mb-1 block">
-                String, Hybrid Or Micro
-              </span>
-              <h2 className="text-4xl md:text-5xl text-[#63B846] leading-none tracking-tight">
-                Which Inverter Is Right For You
-              </h2>
-            </Reveal>
+            <SectionHeader
+              subtitle="String, Hybrid Or Micro"
+              title="Which Inverter Is Right For You"
+              align="left"
+              className="mb-0"
+            />
           </div>
           <div className="lg:max-w-xl">
             <Fade delay={0.2}>
