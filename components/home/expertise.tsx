@@ -95,10 +95,10 @@ const Expertise = () => {
         </div>
 
         {/* Cards Carousel/Grid */}
-       <div className='relative w-full '>
+       <div className='relative w-full h-full'>
          <div 
            ref={carouselRef}
-           className="flex overflow-x-auto items-stretch snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-4 md:gap-6 pb-6 lg:pb-0 scrollbar-hide"
+           className="flex overflow-x-auto items-stretch snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-4 md:gap-6 pt-4 pb-6 lg:pb-0 scrollbar-hide"
            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
          >
           {expertiseData.map((item, index) => (
