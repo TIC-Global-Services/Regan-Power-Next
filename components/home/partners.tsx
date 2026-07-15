@@ -37,17 +37,21 @@ const Partners = () => {
           </h2>
         </div>
         <Fade>
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             {/* Partners Sub-section */}
             <div className="mb-16">
-              <h3 className="text-xl md:text-2xl font-semibold text-black text-center mb-8">Partners</h3>
-              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+              <h3 className="text-xl md:text-2xl font-light text-black text-center mb-8 tracking-tight">
+                Partners
+              </h3>
+              <div className="grid grid-cols-6 border-b border-gray-200">
                 {partnersData.map((partner, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-center min-w-[180px] h-[100px] md:h-[120px]  hover:-translate-y-1 transition-all duration-300"
+                    className={`col-span-3 flex items-center justify-center p-3 md:p-8 hover:-translate-y-0.5 transition-all duration-300 ${
+                      index > 0 ? "border-l border-gray-200" : ""
+                    }`}
                   >
-                    <div className="relative h-full w-[160px]">
+                    <div className="relative h-12 md:h-20 w-24 md:w-40">
                       <Image
                         src={partner.image}
                         alt={partner.name}
@@ -62,14 +66,18 @@ const Partners = () => {
 
             {/* Memberships Sub-section */}
             <div>
-              <h3 className="text-xl md:text-2xl font-semibold text-black text-center mb-8">Memberships</h3>
-              <div className="flex flex-wrap items-center justify-center">
+              <h3 className="text-xl md:text-2xl font-light text-black text-center mb-8 tracking-tight">
+                Memberships
+              </h3>
+              <div className="grid grid-cols-6 border-b border-gray-200">
                 {membershipsData.map((membership, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-center min-w-[180px] h-[100px] md:h-[120px] hover:-translate-y-1 transition-all duration-300"
+                    className={`col-span-2 flex items-center justify-center p-3 md:p-8 hover:-translate-y-0.5 transition-all duration-300 ${
+                      index > 0 ? "border-l border-gray-200" : ""
+                    }`}
                   >
-                    <div className="relative h-full w-[160px]">
+                    <div className="relative h-12 md:h-20 w-24 md:w-40">
                       <Image
                         src={membership.image}
                         alt={membership.name}

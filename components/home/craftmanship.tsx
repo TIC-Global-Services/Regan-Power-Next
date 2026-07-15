@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import Marquee from "@/reuseables/Marquee";
 
 import aikoLogo from "@/assets/panels/aiko_logo.png";
 import canadianSolarLogo from "@/assets/panels/canadiansolar_logo.png";
@@ -105,7 +106,7 @@ const Craftsmanship: React.FC = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTabId(tab.id)}
-                  className={`relative px-8 py-2 text-sm md:text-base font-medium rounded-full transition-colors duration-200 cursor-pointer whitespace-nowrap ${
+                  className={`relative px-4 lg:px-8 py-2 text-xs md:text-base font-medium rounded-full transition-colors duration-200 cursor-pointer whitespace-nowrap ${
                     isActive
                       ? "text-[#63B846]"
                       : "text-gray-600 hover:text-black"
@@ -146,39 +147,60 @@ const Craftsmanship: React.FC = () => {
                   : 0;
 
               return (
-                <div
-                  className="grid"
-                  style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
-                >
-                  {activeCategory.logos.map((logo, idx) => {
-                    const colInRow = idx % cols;
-                    const rowIdx = Math.floor(idx / cols);
-                    const isLastRow = rowIdx === totalRows - 1;
-                    const isIncompleteLastRow =
-                      isLastRow && lastRowCount < cols;
+                <>
+                  {/* Desktop Grid View */}
+                  <div
+                    className="hidden md:grid"
+                    style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
+                  >
+                    {activeCategory.logos.map((logo, idx) => {
+                      const colInRow = idx % cols;
+                      const rowIdx = Math.floor(idx / cols);
+                      const isLastRow = rowIdx === totalRows - 1;
+                      const isIncompleteLastRow =
+                        isLastRow && lastRowCount < cols;
 
-                    const style: React.CSSProperties =
-                      isIncompleteLastRow && colInRow === 0
-                        ? { gridColumnStart: lastRowOffset + 1 }
-                        : {};
+                      const style: React.CSSProperties =
+                        isIncompleteLastRow && colInRow === 0
+                          ? { gridColumnStart: lastRowOffset + 1 }
+                          : {};
 
-                    return (
-                      <div
-                        key={logo.id}
-                        style={style}
-                        className={`flex items-center justify-center py-8 md:py-10 hover:-translate-y-0.5 transition-all duration-300 ${
-                          colInRow > 0 ? "border-l border-gray-200" : ""
-                        } ${rowIdx > 0 ? "border-t border-gray-200" : ""}`}
-                      >
-                        <Image
-                          src={logo.src}
-                          alt={logo.name}
-                          className="object-contain max-h-12 md:max-h-14 w-auto"
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
+                      return (
+                        <div
+                          key={logo.id}
+                          style={style}
+                          className={`flex items-center justify-center py-8 md:py-10 hover:-translate-y-0.5 transition-all duration-300 ${
+                            colInRow > 0 ? "border-l border-gray-200" : ""
+                          } ${rowIdx > 0 ? "border-t border-gray-200" : ""}`}
+                        >
+                          <Image
+                            src={logo.src}
+                            alt={logo.name}
+                            className="object-contain max-h-12 md:max-h-14 w-auto"
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Mobile Marquee View */}
+                  <div className="block md:hidden py-4">
+                    <Marquee speed={20} gap={32} pauseOnHover>
+                      {activeCategory.logos.map((logo) => (
+                        <div
+                          key={logo.id}
+                          className="flex items-center justify-center px-4 py-3 aspect-[5/3] w-36 bg-gray-50/50 rounded-xl"
+                        >
+                          <Image
+                            src={logo.src}
+                            alt={logo.name}
+                            className="object-contain max-h-10 w-auto"
+                          />
+                        </div>
+                      ))}
+                    </Marquee>
+                  </div>
+                </>
               );
             })()}
           </motion.div>
