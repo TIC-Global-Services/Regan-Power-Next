@@ -2,10 +2,9 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import Reveal from '@/reuseables/Reveal';
 import Fade from '@/reuseables/fade';
+import CtaButton from '@/reuseables/CtaButton';
 
 import dailyPowerImg from '@/assets/solar/howbig/dailypower.png';
 import householdProfileImg from '@/assets/solar/howbig/householdprofile.png';
@@ -68,17 +67,14 @@ const SizingGuide = () => {
 
           {/* CTA Link */}
           <Reveal delay={0.3} className="inline-block">
-            <Link
+            <CtaButton
               href="#quote-form"
-              className="inline-flex items-center gap-3 bg-[#63B846]/10 border border-[#63B846]/20 text-[#63B846] px-5 py-2.5 rounded-full hover:bg-[#63B846] hover:text-white transition-all duration-300 group"
-            >
-              <span className="font-medium text-sm md:text-base tracking-wide">
-                Get A Sizing Recommendation For My Home
-              </span>
-              <div className="bg-[#63B846]/20 text-[#63B846] p-1.5 rounded-full group-hover:scale-105 group-hover:bg-[#63B846]/30 transition-all">
-                <ArrowUpRight size={16} strokeWidth={2.5} />
-              </div>
-            </Link>
+              text="Get A Sizing Recommendation For My Home"
+              textColor="text-black"
+              bgClass="bg-[#63B846]/10"
+              borderClass="border border-[#63B846]/20"
+              hoverClass="hover:bg-[#63B846] hover:text-white"
+            />
           </Reveal>
         </div>
 

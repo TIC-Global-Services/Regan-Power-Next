@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
 import Reveal from '@/reuseables/Reveal';
 import Fade from '@/reuseables/fade';
+import CtaButton from '@/reuseables/CtaButton';
 
 import quoteImg from '@/assets/solar/batteryquote.png';
 
@@ -197,15 +197,15 @@ const LeadCaptureForm = () => {
 
                   {/* Submit CTA */}
                   <div className="pt-2">
-                    <button
+                    <CtaButton
                       type="submit"
-                      className="w-full sm:w-auto inline-flex items-center justify-between gap-4 bg-white text-black px-6 py-3 rounded-full hover:shadow-md transition-shadow font-semibold text-sm tracking-wide group"
-                    >
-                      <span>Request My Free Quote</span>
-                      <div className="bg-[#63B846] text-white p-2 rounded-full group-hover:translate-x-1 transition-transform">
-                        <ArrowRight size={16} strokeWidth={2.5} />
-                      </div>
-                    </button>
+                      text="Request My Free Quote"
+                      textColor="text-black"
+                      bgClass="bg-white"
+                      borderClass="border border-gray-250"
+                      hoverClass="hover:shadow-md hover:bg-gray-50"
+                      className="w-full sm:w-auto"
+                    />
                   </div>
 
                 </form>

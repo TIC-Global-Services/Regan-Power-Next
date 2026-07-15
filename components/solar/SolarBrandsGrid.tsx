@@ -2,10 +2,9 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import Reveal from '@/reuseables/Reveal';
 import Fade from '@/reuseables/fade';
+import CtaButton from '@/reuseables/CtaButton';
 
 import canadianSolarImg from '@/assets/solar/brands/canadiansolar.png';
 import jaSolarImg from '@/assets/solar/brands/jasolar.png';
@@ -50,17 +49,14 @@ const SolarBrandsGrid = () => {
 
           {/* CTA Link */}
           <Reveal delay={0.3} className="inline-block">
-            <Link
+            <CtaButton
               href="#quote-form"
-              className="inline-flex items-center gap-3 bg-[#63B846]/40 border border-[#63B846]/20 text-[#63B846] px-5 py-2.5 rounded-full hover:bg-[#63B846] hover:text-white transition-all duration-300 group"
-            >
-              <span className="font-medium text-sm md:text-base text-black tracking-wide">
-                See Our Full Panel Range
-              </span>
-              <div className="bg-[#63B846] text-black p-1.5 rounded-full group-hover:scale-105 group-hover:bg-[#63B846]/30 transition-all">
-                <ArrowUpRight size={18} strokeWidth={2.5} />
-              </div>
-            </Link>
+              text="See Our Full Panel Range"
+              textColor="text-black"
+              bgClass="bg-[#63B846]/40"
+              borderClass="border border-[#63B846]/20"
+              hoverClass="hover:bg-[#63B846] hover:text-white"
+            />
           </Reveal>
         </div>
 

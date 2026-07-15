@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { ArrowUpRight } from 'lucide-react';
 import Reveal from '@/reuseables/Reveal';
 import Fade from '@/reuseables/fade';
+import CtaButton from '@/reuseables/CtaButton';
 
 import consultationImg from '@/assets/solar/consultation.png';
 import installImg from '@/assets/solar_battery_charging.png'; // fallback or related visual
@@ -78,23 +78,21 @@ const TimelineSection = () => {
 
             {/* CTA Button */}
             <Reveal className="mt-8">
-              <a
+              <CtaButton
                 href="#quote-form"
-                className="inline-flex items-center gap-3 bg-[#63B846]/50 backdrop-blur-md text-white px-2 py-2 rounded-full hover:bg-[#63B846] transition-all duration-300 border border-white/20 shadow-lg group"
-              >
-                <span className="pl-4 font-medium text-sm md:text-base tracking-wide">
-                  Start With A Free Consultation
-                </span>
-                <div className="bg-[#659129] p-2 rounded-full group-hover:scale-105 group-hover:bg-[#567c22] transition-all">
-                  <ArrowUpRight size={18} strokeWidth={2.5} />
-                </div>
-              </a>
+                text="Start With A Free Consultation"
+                textColor="text-white"
+                bgClass="bg-[#63B846]/50 backdrop-blur-md"
+                borderClass="border border-white/20"
+                hoverClass="hover:bg-[#63B846]"
+                className="shadow-lg"
+              />
             </Reveal>
           </div>
 
           {/* Right Column: Dynamic Portrait Image Frame */}
           <div className="lg:sticky lg:top-28 flex justify-center">
-            <div className="relative w-full aspect-[4/5] max-h-[580px] max-w-[460px] rounded-[32px] overflow-hidden shadow-md">
+            <div className="relative w-full aspect-[4/5] max-h-[660px] max-w-[770px] rounded-[20px] overflow-hidden shadow-md">
               <Image
                 src={steps[activeStep].img}
                 alt={steps[activeStep].title}
