@@ -15,6 +15,7 @@ export interface HeroProps {
     subtitleColor?: string;
     descriptionColor?: string;
     showOverlay?: boolean;
+    titleColor?: string;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -30,6 +31,7 @@ const Hero: React.FC<HeroProps> = ({
     subtitleColor = 'text-black',
     descriptionColor = 'text-black',
     showOverlay = false,
+    titleColor,
 }) => {
     return (
         <section className={`relative w-full flex flex-col justify-end pb-12 md:pb-10 h-screen min-h-[600px] ${!isFullScreen ? 'md:h-[600px]' : ''}`}>
@@ -64,7 +66,7 @@ const Hero: React.FC<HeroProps> = ({
                     <p className={`text-2xl md:text-3xl font-light mb-1 tracking-tighter drop-shadow-md ${subtitleColor}`}>
                         {topSubtitle}
                     </p>
-                    <h1 className="text-5xl md:text-7xl lg:text-[3.750rem] font-medium text-[#8dc63f] mb-4 leading-none tracking-tight drop-shadow-md">
+                    <h1 className={`text-5xl md:text-7xl lg:text-[3.750rem] font-medium mb-4 leading-none tracking-tight drop-shadow-md ${titleColor || 'text-[#8dc63f]'}`}>
                         {mainTitle}
                     </h1>
                     <p className={`text-base md:text-xl leading-relaxed max-w-xl font-light tracking-tight drop-shadow-sm ${descriptionColor}`}>

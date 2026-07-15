@@ -1,9 +1,8 @@
 "use client";
 
 import React from 'react';
-import Fade from '@/reuseables/fade';
 import Marquee from '@/reuseables/Marquee';
-import SectionHeader from '@/reuseables/SectionHeader';
+import EditorialTextSection from '@/reuseables/EditorialTextSection';
 
 const tickerItems = [
   "45,000+ Solar",
@@ -20,6 +19,25 @@ const SpacerIcon = () => (
     <path d="M6.81579 9.27282C5.46032 7.91735 5.58923 5.58923 5.58923 5.58923C5.58923 5.58923 7.91735 5.46032 9.27282 6.81579C10.6283 8.17126 10.4994 10.4994 10.4994 10.4994C10.4994 10.4994 8.17517 10.6283 6.81579 9.27282Z" />
   </svg>
 );
+
+const introParagraphs = [
+  {
+    text: "At its simplest, a rooftop solar system is a partnership between two pieces of hardware: the panels that generate energy from the sun, and the inverter that converts it into power your home can actually use. Everything else — mounting rails, isolators, monitoring, cabling — exists to support those two components.",
+    isSecondary: false
+  },
+  {
+    text: (
+      <>
+        <span className="text-black">The quality of the panels decides</span> how much energy you generate. The quality of the inverter decides how much of that energy reaches your appliances, year after year, through 40°C Perth summers.
+      </>
+    ),
+    isSecondary: true
+  },
+  {
+    text: "Getting both right is the difference between a system that pays back in five years and one that underperforms for twenty-five. Regen Power only installs Tier-1 panels paired with premium European inverters — no compromises, no budget substitutes.",
+    isSecondary: true
+  }
+];
 
 const SolarStatsAndIntro = () => {
   return (
@@ -41,36 +59,16 @@ const SolarStatsAndIntro = () => {
       </div>
 
       {/* Concept Introduction Text Block */}
-      <div className="px-[5%] mx-auto mt-16 md:mt-24 text-left">
-        <SectionHeader
-          subtitle="A Solar System Is Two Things"
-          title="Working Together."
-          align="left"
-          subtitleClass="text-xl md:text-2xl font-light text-black mb-2 block normal-case"
-          titleClass="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-tighter mb-12"
-        />
-
-        <Fade delay={0.2} duration={0.8}>
-          <div className="text-center max-w-4xl mx-auto text-black text-lg md:text-3xl font-light leading-tight tracking-tight space-y-6">
-            <p>
-              At its simplest, a rooftop solar system is a partnership between two pieces of hardware:
-              the panels that generate energy from the sun, and the inverter that converts it into power your
-              home can actually use. Everything else — mounting rails, isolators, monitoring, cabling — exists
-              to support those two components.
-            </p>
-            <p className="text-gray-400">
-              <span className="text-black">The quality of the panels decides</span> how much energy you generate. The quality of
-              the inverter decides how much of that energy reaches your appliances,
-              year after year, through 40°C Perth summers.
-            </p>
-            <p className="text-gray-400">
-              Getting both right is the difference between a system that pays back in five years and one that
-              underperforms for twenty-five. Regen Power only installs Tier-1 panels paired with premium
-              European inverters — no compromises, no budget substitutes.
-            </p>
-          </div>
-        </Fade>
-      </div>
+      <EditorialTextSection
+        subtitle="A Solar System Is Two Things"
+        title="Working Together."
+        paragraphs={introParagraphs}
+        align="left"
+        className="mt-16 md:mt-24"
+        subtitleClass="text-xl md:text-2xl font-light text-black mb-2 block normal-case"
+        titleClass="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-tighter mb-12"
+        paragraphsClass="text-center"
+      />
     </section>
   );
 };
