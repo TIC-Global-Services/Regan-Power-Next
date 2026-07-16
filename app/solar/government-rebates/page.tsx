@@ -68,6 +68,7 @@ export default function GovernmentRebatesPage() {
         titleColor="text-[#63B846]"
         descriptionColor="text-white/95"
         showOverlay
+        heightClass="h-[600px]"
       />
 
       <RebateProgramSelector />

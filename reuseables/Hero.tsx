@@ -16,6 +16,7 @@ export interface HeroProps {
     descriptionColor?: string;
     showOverlay?: boolean;
     titleColor?: string;
+    heightClass?: string;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -32,9 +33,11 @@ const Hero: React.FC<HeroProps> = ({
     descriptionColor = 'text-black',
     showOverlay = false,
     titleColor,
+    heightClass,
 }) => {
+    const height = heightClass || (isFullScreen ? 'h-screen min-h-[600px]' : 'md:h-[600px]');
     return (
-        <section className={`relative w-full flex flex-col justify-end pb-12 md:pb-10 h-screen min-h-[600px] ${!isFullScreen ? 'md:h-[600px]' : ''}`}>
+        <section className={`relative w-full flex flex-col justify-end pb-12 md:pb-10 ${height}`}>
             <div className="absolute inset-0 z-0">
                 {mediaType === 'video' ? (
                     <video

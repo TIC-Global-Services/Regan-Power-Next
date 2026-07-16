@@ -33,6 +33,7 @@ export default function SolarFaqPage() {
         titleColor="text-[#63B846]"
         descriptionColor="text-white/95"
         showOverlay
+        heightClass="h-[600px]"
       />
 
       <CategorizedFAQ />
