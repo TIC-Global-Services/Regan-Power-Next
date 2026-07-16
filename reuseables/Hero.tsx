@@ -6,9 +6,9 @@ export interface HeroProps {
     mediaSrc: string | StaticImageData;
     videoFile?: string;
     mediaType?: 'image' | 'video';
-    topSubtitle: string;
-    mainTitle: string;
-    description: string;
+    topSubtitle: React.ReactNode;
+    mainTitle: React.ReactNode;
+    description: React.ReactNode;
     ctaText: string;
     ctaLink: string;
     isFullScreen?: boolean;
@@ -69,9 +69,9 @@ const Hero: React.FC<HeroProps> = ({
                     <h1 className={`text-5xl md:text-7xl lg:text-[3.750rem] font-medium mb-4 leading-none tracking-tight drop-shadow-md ${titleColor || 'text-[#8dc63f]'}`}>
                         {mainTitle}
                     </h1>
-                    <p className={`text-base md:text-xl leading-relaxed max-w-xl font-light tracking-tight drop-shadow-sm ${descriptionColor}`}>
+                    <div className={`text-base md:text-xl leading-relaxed max-w-xl font-light tracking-tight drop-shadow-sm ${descriptionColor}`}>
                         {description}
-                    </p>
+                    </div>
                 </div>
 
                 {/* CTA Button */}

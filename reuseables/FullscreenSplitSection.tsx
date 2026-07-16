@@ -12,6 +12,7 @@ export interface FullscreenSplitSectionProps {
   imageAlt?: string;
   imagePosition?: 'left' | 'right';
   textArrangement?: 'split' | 'center';
+  badge?: string;
 }
 
 const FullscreenSplitSection: React.FC<FullscreenSplitSectionProps> = ({
@@ -21,7 +22,8 @@ const FullscreenSplitSection: React.FC<FullscreenSplitSectionProps> = ({
   image,
   imageAlt = "Feature Image",
   imagePosition = 'left',
-  textArrangement = 'split'
+  textArrangement = 'split',
+  badge
 }) => {
   const isImageLeft = imagePosition === 'left';
   const isSplit = textArrangement === 'split';
@@ -53,6 +55,11 @@ const FullscreenSplitSection: React.FC<FullscreenSplitSectionProps> = ({
           {isSplit ? (
             <>
               <div>
+                {badge && (
+                  <span className="mb-6 inline-flex rounded-full bg-[#E5DDD8] px-5 py-2 text-xs font-medium uppercase tracking-wide text-black">
+                    {badge}
+                  </span>
+                )}
                 <SectionHeader
                   subtitle={subtitle}
                   title={title}
@@ -72,6 +79,11 @@ const FullscreenSplitSection: React.FC<FullscreenSplitSectionProps> = ({
             </>
           ) : (
             <div>
+              {badge && (
+                <span className="mb-6 inline-flex rounded-full bg-[#E5DDD8] px-5 py-2 text-xs font-medium uppercase tracking-wide text-black">
+                  {badge}
+                </span>
+              )}
               <SectionHeader
                 subtitle={subtitle}
                 title={title}

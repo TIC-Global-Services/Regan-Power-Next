@@ -3,7 +3,7 @@ import Reveal from '@/reuseables/Reveal';
 import Fade from '@/reuseables/fade';
 
 interface SectionHeaderProps {
-  subtitle: string;
+  subtitle?: string;
   title: string | React.ReactNode;
   description?: string;
   align?: 'left' | 'center' | 'right';
@@ -11,6 +11,7 @@ interface SectionHeaderProps {
   subtitleClass?: string;
   titleClass?: string;
   descClass?: string;
+  badge?: string;
 }
 
 const hasSizeClass = (cls: string) => {
@@ -28,7 +29,8 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   className = '',
   subtitleClass = '',
   titleClass = '',
-  descClass = ''
+  descClass = '',
+  badge
 }) => {
   const alignClass = align === 'left' ? 'text-left' : align === 'right' ? 'text-right' : 'text-center mx-auto';
   const containerAlign = align === 'left' ? 'items-start' : align === 'right' ? 'items-end' : 'items-center';
@@ -39,9 +41,16 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   return (
     <div className={`w-full flex flex-col ${containerAlign} ${alignClass} ${className}`}>
       <Reveal>
-        <p className={`${defaultSubtitleSize} tracking-tight font-normal block ${subtitleClass}`}>
-          {subtitle}
-        </p>
+        {badge && (
+          <span className="mb-4 inline-flex rounded-full bg-[#E5DDD8] px-5 py-2 text-xs font-medium uppercase tracking-wide text-black">
+            {badge}
+          </span>
+        )}
+        {subtitle && (
+          <p className={`${defaultSubtitleSize} tracking-tight font-normal block ${subtitleClass}`}>
+            {subtitle}
+          </p>
+        )}
         <h2 className={`text-3xl ${defaultTitleSize} text-[#63B846] tracking-tight font-normal ${titleClass}`}>
           {title}
         </h2>
