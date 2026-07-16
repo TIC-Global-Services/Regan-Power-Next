@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useInView, useMotionValue, useTransform, animate, Variants } from 'framer-motion';
+import SectionHeader from "@/reuseables/SectionHeader";
 
 import productReviewBg from '@/assets/home/whychooseus/product_review_bg.png';
 import productreview from '@/assets/home/whychooseus/product_review.png';
@@ -47,13 +48,14 @@ const WhyChooseUs = () => {
   return (
     <section className="py-10 md:py-24 bg-white overflow-hidden">
       <div className="px-[5%]">
-        {/* Header */}
-        <div className="mb-10 md:mb-15 leading-[0.8]">
-          <h2 className="text-2xl md:text-3xl lg:text-3xl font-medium text-black tracking-tight">
-            Why Choose
-          </h2>
-          <p className="text-[#63B846] font-light text-[2.5rem] md:text-[3rem] lg:text-[5rem] tracking-tighter">Regen Power</p>
-        </div>
+        <SectionHeader
+          subtitle="Why Choose"
+          title="Regen Power"
+          align="left"
+          subtitleClass="text-2xl md:text-3xl lg:text-3xl font-medium text-black tracking-tight normal-case mb-1"
+          titleClass="text-[#63B846] font-light text-[2.5rem] md:text-[3rem] lg:text-[5rem] tracking-tighter leading-none"
+          className="mb-10 md:mb-15 lg:-space-y-4"
+        />
 
         {/* Grid Layout */}
         <motion.div

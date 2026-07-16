@@ -1,11 +1,10 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import CtaButton from './CtaButton';
 
 export interface HeroProps {
     mediaSrc: string | StaticImageData;
-    videoFile?:string;
+    videoFile?: string;
     mediaType?: 'image' | 'video';
     topSubtitle: string;
     mainTitle: string;
@@ -13,6 +12,10 @@ export interface HeroProps {
     ctaText: string;
     ctaLink: string;
     isFullScreen?: boolean;
+    subtitleColor?: string;
+    descriptionColor?: string;
+    showOverlay?: boolean;
+    titleColor?: string;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -25,6 +28,10 @@ const Hero: React.FC<HeroProps> = ({
     ctaText,
     ctaLink,
     isFullScreen = true,
+    subtitleColor = 'text-black',
+    descriptionColor = 'text-black',
+    showOverlay = false,
+    titleColor,
 }) => {
     return (
         <section className={`relative w-full flex flex-col justify-end pb-12 md:pb-10 h-screen min-h-[600px] ${!isFullScreen ? 'md:h-[600px]' : ''}`}>
@@ -43,41 +50,37 @@ const Hero: React.FC<HeroProps> = ({
                         src={mediaSrc}
                         alt="Hero Background"
                         fill
-                        className="object-contain"
+                        className="object-cover"
                         priority
                     />
                 )}
                 {/* Gradient Overlay for text readability at the bottom */}
-                {/* <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/90 via-[#0a0a0a]/20 to-transparent" /> */}
+                {showOverlay && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                )}
             </div>
 
             {/* Content Area */}
             <div className="relative z-10 w-full px-[5%] flex flex-col md:flex-row md:items-end justify-between gap-8 pt-32">
                 <div className="max-w-3xl">
-                    <p className="text-2xl md:text-3xl font-light mb-1 tracking-tighter drop-shadow-md">
+                    <p className={`text-2xl md:text-3xl font-light mb-1 tracking-tighter drop-shadow-md ${subtitleColor}`}>
                         {topSubtitle}
                     </p>
-                    <h1 className="text-5xl md:text-7xl lg:text-[3.750rem] font-medium text-[#8dc63f] mb-4 leading-none tracking-tight drop-shadow-md">
+                    <h1 className={`text-5xl md:text-7xl lg:text-[3.750rem] font-medium mb-4 leading-none tracking-tight drop-shadow-md ${titleColor || 'text-[#8dc63f]'}`}>
                         {mainTitle}
                     </h1>
-                    <p className="text-base md:text-xl text-black leading-relaxed max-w-xl font-light tracking-tight drop-shadow-sm">
+                    <p className={`text-base md:text-xl leading-relaxed max-w-xl font-light tracking-tight drop-shadow-sm ${descriptionColor}`}>
                         {description}
                     </p>
                 </div>
 
                 {/* CTA Button */}
                 <div className="flex-shrink-0 pb-2">
-                    <Link
+                    <CtaButton
                         href={ctaLink}
-                        className="inline-flex items-center gap-3 bg-[#8dc63f]/80 backdrop-blur-md text-white px-2 py-2 rounded-full hover:bg-[#8dc63f] transition-all duration-300 border border-white/20 shadow-lg group"
-                    >
-                        <span className="pl-4 font-medium text-sm md:text-base tracking-wide">
-                            {ctaText}
-                        </span>
-                        <div className="bg-[#659129] p-2.5 rounded-full group-hover:scale-105 group-hover:bg-[#567c22] transition-all">
-                            <ArrowUpRight size={18} strokeWidth={2.5} />
-                        </div>
-                    </Link>
+                        text={ctaText}
+                        textColor="text-white"
+                    />
                 </div>
             </div>
         </section>

@@ -1,21 +1,24 @@
 import React from 'react';
 import Image from 'next/image';
-import { ArrowUpRight } from 'lucide-react';
+import { StaticImageData } from 'next/image';
 import getSolarBg from '@/assets/for_your_home.png';
 import Fade from './fade';
+import CtaButton from './CtaButton';
 
 interface GetSolarProps {
   subtitle?: string;
   mainTitle?: string;
   description?: string;
   buttonText?: string;
+  bgImage?: string | StaticImageData;
 }
 
 const GetSolar = ({
   subtitle = "Get A Solar System Designed",
   mainTitle = "For Your Home",
   description = "Tell us a few details about your home and power use, and one of our Perth-based CEC-accredited designers will build a system tailored to your roof, your household, and your budget. Free, no-obligation, and no high-pressure sales calls — just a proper engineering recommendation.",
-  buttonText = "Get My Free Quote"
+  buttonText = "Get My Free Quote",
+  bgImage = getSolarBg
 }: GetSolarProps) => {
   return (
     <Fade>
@@ -23,7 +26,7 @@ const GetSolar = ({
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src={getSolarBg}
+            src={bgImage}
             alt="Solar Panel Installation on Roof"
             fill
             className="object-cover object-bottom"
@@ -44,12 +47,14 @@ const GetSolar = ({
               {description}
             </p>
 
-            <button className="flex items-center gap-3 border border-[#63B846] bg-[#63B84640] backdrop-blur-sm text-white text-sm md:text-base font-medium pl-6 pr-2 py-2 rounded-full hover:bg-[#63B846] transition-all duration-300 group/btn">
-              <span>{buttonText}</span>
-              <div className="bg-[#8dc63f] rounded-full p-1 group-hover/btn:rotate-45 transition-transform duration-300">
-                <ArrowUpRight size={24} className="text-white" />
-              </div>
-            </button>
+            <CtaButton
+              href="#quote-form"
+              text={buttonText}
+              textColor="text-white"
+              bgClass="bg-[#63B84640] backdrop-blur-sm"
+              borderClass="border border-[#63B846]"
+              hoverClass="hover:bg-[#63B846]"
+            />
           </div>
         </div>
       </section>

@@ -3,15 +3,16 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, ChevronDown, Plus } from 'lucide-react';
+import { ChevronDown, Plus } from 'lucide-react';
 import gsap from 'gsap';
+import CtaButton from './CtaButton';
 
 const navItems = [
   {
     name: 'Solar System',
     href: '#',
     subItems: [
-      { name: 'Residential Solar', href: '#' },
+      { name: 'Residential Solar', href: '/solar' },
       { name: 'Solar Panels', href: '#' },
       { name: 'Inverters', href: '#' },
     ],
@@ -175,15 +176,7 @@ const Navbar = () => {
 
         {/* Contact Us Button (Desktop) */}
         <div className="hidden lg:flex">
-          <Link 
-            href="#" 
-            className="flex items-center gap-3 bg-[#63B84666] backdrop-blur-md text-black px-1.5 py-1.5 rounded-full hover:bg-[#8dc63f] transition-all border-1 border-[#63B846] group"
-          >
-            <span className="pl-4 font-medium text-sm">Contact Us</span>
-            <div className="bg-[#63B846] p-2 rounded-full group-hover:scale-105 transition-transform">
-              <ArrowUpRight size={16} strokeWidth={2.5} />
-            </div>
-          </Link>
+          <CtaButton href="#" text="Contact Us" textColor="text-black" />
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -232,14 +225,16 @@ const Navbar = () => {
               </li>
             ))}
             <li className="mt-8">
-               <Link 
-                href="#" 
-                className="flex items-center justify-center gap-3 bg-[#8dc63f] text-white px-6 py-4 rounded-full font-medium hover:bg-[#7ebd35] transition-colors"
+              <CtaButton
+                href="#"
+                text="Contact Us"
+                textColor="text-white"
+                bgClass="bg-[#8dc63f]"
+                borderClass="border border-[#7ebd35]"
+                hoverClass="hover:bg-[#7ebd35]"
+                className="w-full justify-between"
                 onClick={toggleMenu}
-              >
-                <span className="text-xl">Contact Us</span>
-                <ArrowUpRight size={24} />
-              </Link>
+              />
             </li>
           </ul>
         </div>
