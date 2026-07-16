@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Fade from '@/reuseables/fade';
 import SectionHeader from '@/reuseables/SectionHeader';
 import stringBg from '@/assets/solar/string.png';
-import hybridBg from '@/assets/solar_battery_charging.png'; // Using related high-quality asset for hybrid
-import microBg from '@/assets/5_way.png'; // Using related high-quality asset for micro
+import hybridBg from '@/assets/solar/hybrid.png';
+import microBg from '@/assets/solar/micro.png';
 
 const inverterData = [
   {
@@ -28,11 +28,11 @@ const inverterData = [
     title: 'Hybrid',
     bg: hybridBg,
     cards: [
-      { label: 'How It Works', text: 'A Central Inverter That Converts Solar Energy And Directs It to Appliances, Grid, Or Stores It In A Battery.' },
-      { label: 'Best For', text: 'Homes Installing Solar And A Battery Together, Or Planning to Add a Battery Soon.' },
-      { label: 'Efficiency', text: 'Typically 97%+ Efficiency, With Integrated Battery Charging Protocols.' },
-      { label: 'Brands We Install', text: 'Fronius GEN24, Sungrow SH, Sigenergy' },
-      { label: 'Monitoring', text: 'Whole-System + Battery Charging/Discharging Status In Real Time.' }
+      { label: 'How It Works', text: 'One Central Inverter That Handles Both Solar Conversion And Battery Charging In A Single Unit.' },
+      { label: 'Best For', text: 'Any Home Considering A Battery Now Or Within 5 Years, Including Tesla Powerwall.' },
+      { label: 'Efficiency', text: 'Achieves 97–98% Efficiency, Maximizing Energy Output With Minimal Power Loss.' },
+      { label: 'Brands We Install', text: 'Fronius GEN24, Sungrow SH, GoodWe ET, Sigenergy' },
+      { label: 'Monitoring', text: 'Whole-System Plus Battery Status, All In One App.' }
     ]
   },
   {
@@ -41,17 +41,24 @@ const inverterData = [
     title: 'Micro',
     bg: microBg,
     cards: [
-      { label: 'How It Works', text: 'Small Inverters Attached to Each Individual Solar Panel, Converting DC to AC On the Roof.' },
-      { label: 'Best For', text: 'Complex Roofs With Multiple Orientations, Or Shadow Obstructions from Trees/Chimneys.' },
-      { label: 'Efficiency', text: '96.5%+ Efficiency, Preventing One Shaded Panel from Dragging Down the Entire System.' },
-      { label: 'Brands We Install', text: 'Enphase IQ8 Series' },
-      { label: 'Monitoring', text: 'Panel-Level Monitoring, Allowing You to See the Performance of Every Single Panel.' }
+      { label: 'How It Works', text: 'A Small Inverter Sits Behind Each Individual Panel. AC Is Generated On The Roof, Not In A Central Box.' },
+      { label: 'Best For', text: 'Complex Roofs, Partial Shade, Multiple Orientations, Or Demanding Monitoring.' },
+      { label: 'Efficiency', text: 'Achieves 97% + Per Panel Efficiency, Maximizing Energy Output With Minimal Power Loss.' },
+      { label: 'Brands We Install', text: 'Enphase (Tesla-Compatible)' },
+      { label: 'Monitoring', text: 'Panel-By-Panel Data — You Can See Any Single Panel\'s Output.' }
     ]
   }
 ];
 
 const InverterSlider = () => {
   const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % inverterData.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [activeTab]);
 
   return (
     <section className="py-16 md:py-24 bg-white">
@@ -82,7 +89,7 @@ const InverterSlider = () => {
 
 
         {/* Slide Frame */}
-        <div className="relative rounded-[32px] overflow-hidden min-h-[550px] md:h-[580px] flex flex-col justify-between p-6 md:p-10 z-10">
+        <div className="relative rounded-[20px] overflow-hidden min-h-[550px] md:h-[580px] flex flex-col justify-between p-6 md:p-10 z-10">
 
           {/* Backdrop Image */}
           <div className="absolute inset-0 z-0">
@@ -99,7 +106,9 @@ const InverterSlider = () => {
 
           {/* Large Header Title inside slide */}
           <div className="relative z-10 mt-4">
-            <h3 className="text-white text-5xl md:text-7xl lg:text-[6rem] tracking-tight">
+            <h3 className={`text-5xl md:text-7xl lg:text-[6rem] tracking-tight ${
+              inverterData[activeTab].id === 'string' ? 'text-white' : 'text-[#63B846]'
+            }`}>
               {inverterData[activeTab].title}
             </h3>
           </div>
@@ -109,7 +118,7 @@ const InverterSlider = () => {
             {inverterData[activeTab].cards.map((card, idx) => (
               <div
                 key={idx}
-                className="bg-white/30 backdrop-blur-md border border-white/15 rounded-2xl p-5 hover:bg-white/15 transition-colors"
+                className="bg-white/30 backdrop-blur-md border border-white/15 rounded-[0.5rem] p-5 hover:bg-white/15 transition-colors"
               >
                 <h4 className="text-white text-xl uppercase tracking-tight mb-2">
                   {card.label}
@@ -129,7 +138,7 @@ const InverterSlider = () => {
             <button
               key={index}
               onClick={() => setActiveTab(index)}
-              className={`h-2.5 rounded-full transition-all duration-300
+              className={`h-1.5 rounded-full transition-all duration-300
                 ${activeTab === index ? 'w-8 bg-[#63B846]' : 'w-2.5 bg-gray-300'}
               `}
               aria-label={`Go to slide ${index + 1}`}

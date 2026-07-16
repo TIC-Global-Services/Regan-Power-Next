@@ -14,18 +14,17 @@ const paragraphs = [
 
 const Philosophy = () => {
   return (
-    <section className="min-h-screen flex flex-col justify-center bg-white border-b border-gray-50 py-16 lg:py-0">
-      <EditorialTextSection
-        badge="PHILOSOPHY"
-        subtitle="We Install Fewer Brands,"
-        title="Deliberately."
-        paragraphs={paragraphs}
-        align="left"
-        subtitleClass="text-lg md:text-2xl text-black font-normal"
-        titleClass="text-4xl md:text-[5rem] text-[#63B846] leading-none font-normal tracking-tight"
-        paragraphsClass="text-left max-w-4xl"
-      />
-    </section>
+    <EditorialTextSection
+      badge="PHILOSOPHY"
+      subtitle="We Install Fewer Brands,"
+      title="Deliberately."
+      paragraphs={paragraphs}
+      align="left"
+      subtitleClass="text-lg md:text-2xl text-black font-normal"
+      titleClass="text-4xl md:text-[5rem] text-[#63B846] leading-none font-normal tracking-tight"
+      paragraphsClass="text-left max-w-4xl"
+      revealEffect
+    />
   );
 };
 

@@ -68,25 +68,28 @@ const SizingGuide = () => {
         </div>
 
         {/* Table layout */}
-        <div className="overflow-x-auto rounded-[24px] border border-gray-200 mt-12 mb-16 max-w-4xl mx-auto">
+        <div className="overflow-x-auto rounded-[24px] mt-12 mb-16 max-w-4xl mx-auto overflow-hidden">
           <table className="w-full border-collapse text-center bg-white">
             <thead>
               <tr className="bg-[#A0CF44] text-black font-[var(--font-aeonik)]">
-                <th className="p-5 text-[15px] border border-gray-200">Daily use</th>
-                <th className="p-5 text-[15px] border border-gray-200">Recommended size</th>
-                <th className="p-5 text-[15px] border border-gray-200">Typical household</th>
-                <th className="p-5 text-[15px] border border-gray-200">Phase required</th>
+                <th className="p-5 text-lg md:text-2xl font-normal border-r border-b border-black w-1/4">Daily use</th>
+                <th className="p-5 text-lg md:text-2xl font-normal border-r border-b border-black w-1/4">Recommended size</th>
+                <th className="p-5 text-lg md:text-2xl font-normal border-r border-b border-black w-1/4">Typical household</th>
+                <th className="p-5 text-lg md:text-2xl font-normal border-b border-black w-1/4">Phase required</th>
               </tr>
             </thead>
             <tbody>
-              {tableRows.map((row, idx) => (
-                <tr key={idx} className="bg-[#EEF6EB]">
-                  <td className="p-5 text-[15px] text-black border border-gray-200">{row.dailyUse}</td>
-                  <td className="p-5 text-[15px] text-black border border-gray-200">{row.size}</td>
-                  <td className="p-5 text-[15px] text-gray-700 font-light border border-gray-200">{row.household}</td>
-                  <td className="p-5 text-[15px] text-gray-700 font-light border border-gray-200">{row.phase}</td>
-                </tr>
-              ))}
+              {tableRows.map((row, idx) => {
+                const isLastRow = idx === tableRows.length - 1;
+                return (
+                  <tr key={idx} className="bg-[#EEF6EB]">
+                    <td className={`p-5 text-xl text-black border-r border-black ${isLastRow ? '' : 'border-b'}`}>{row.dailyUse}</td>
+                    <td className={`p-5 text-xl text-black border-r border-black ${isLastRow ? '' : 'border-b'}`}>{row.size}</td>
+                    <td className={`p-5 text-xl text-black font-light border-r border-black ${isLastRow ? '' : 'border-b'}`}>{row.household}</td>
+                    <td className={`p-5 text-xl text-black font-light ${isLastRow ? '' : 'border-b border-black'}`}>{row.phase}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

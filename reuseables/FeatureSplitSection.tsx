@@ -209,7 +209,7 @@ const FeatureSplitSection: React.FC<FeatureSplitSectionProps> = ({
                   className="w-full relative"
                   style={{
                     // Override swiper pagination styles to match brand design
-                    // @ts-ignore
+                    // @ts-expect-error: Custom swiper pagination CSS variables
                     '--swiper-pagination-color': accentColor,
                     '--swiper-pagination-bullet-inactive-color': '#d1d5db',
                     '--swiper-pagination-bullet-inactive-opacity': '1',

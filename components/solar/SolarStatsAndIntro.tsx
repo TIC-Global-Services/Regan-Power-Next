@@ -26,11 +26,7 @@ const introParagraphs = [
     isSecondary: false
   },
   {
-    text: (
-      <>
-        <span className="text-black">The quality of the panels decides</span> how much energy you generate. The quality of the inverter decides how much of that energy reaches your appliances, year after year, through 40°C Perth summers.
-      </>
-    ),
+    text: "The quality of the panels decides how much energy you generate. The quality of the inverter decides how much of that energy reaches your appliances, year after year, through 40°C Perth summers.",
     isSecondary: true
   },
   {
@@ -68,6 +64,7 @@ const SolarStatsAndIntro = () => {
         subtitleClass="text-xl md:text-2xl font-light text-black mb-2 block normal-case"
         titleClass="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-tighter mb-4"
         paragraphsClass="text-center"
+        revealEffect
       />
     </section>
   );
