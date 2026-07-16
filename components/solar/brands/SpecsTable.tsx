@@ -60,72 +60,87 @@ const SpecsTable = () => {
           align="left"
           className="mb-8"
           subtitleClass="text-base md:text-xl lg:text-2xl normal-case block text-black"
-          titleClass="text-4xl md:text-[5.5rem] font-normal leading-none tracking-tight mb-4 text-[#63B846]"
-          descClass="leading-tight"
+          titleClass="text-4xl md:text-[5.5rem] font-normal leading-none tracking-tight text-[#63B846]"
+          descClass=" text-xl leading-tight"
         />
 
         {/* Table Container - Full Width */}
-        <Reveal className="rounded-[24px] border border-[#63B846]/20 shadow-sm overflow-hidden">
+        <Reveal className="rounded-[24px] mt-12 mb-16 max-w-7xl mx-auto overflow-hidden">
           <table className="w-full h-[500px] border-collapse text-center bg-white table-fixed">
             <thead>
-              <tr className="border-b border-[#63B846]/20 h-[100px]">
-                <th className="bg-[#A0CF44] text-black font-semibold p-4 text-sm md:text-base tracking-tight border-r border-[#63B846]/20">
+              <tr className="h-[100px]">
+                <th className="bg-[#A0CF44] text-black font-normal p-4 text-xl tracking-tight border-r border-b border-black w-[15%]">
                   Brand & Series
                 </th>
-                {specsColumns.map((col, idx) => (
-                  <th key={idx} className="bg-[#EEF6EB]/60 p-4 text-black font-semibold text-xs md:text-sm border-r border-[#63B846]/20 last:border-r-0 overflow-hidden truncate">
-                    {col.brand}
-                  </th>
-                ))}
+                {specsColumns.map((col, idx) => {
+                  const isLastCol = idx === specsColumns.length - 1;
+                  return (
+                    <th key={idx} className={`bg-[#EEF6EB]/60 p-4 text-black font-normal text-xl border-b border-black ${isLastCol ? '' : 'border-r'} overflow-hidden truncate`}>
+                      {col.brand}
+                    </th>
+                  );
+                })}
               </tr>
             </thead>
             <tbody>
               {/* Efficiency Row */}
-              <tr className="border-b border-[#63B846]/20 hover:bg-[#EEF6EB]/80 transition-colors h-[100px]">
-                <td className="bg-[#A0CF44] text-black font-semibold p-4 text-sm border-r border-[#63B846]/20">
+              <tr className="hover:bg-[#EEF6EB]/80 transition-colors h-[100px]">
+                <td className="bg-[#A0CF44] text-black font-normal p-4 text-xl border-r border-b border-black">
                   Efficiency
                 </td>
-                {specsColumns.map((col, idx) => (
-                  <td key={idx} className="bg-[#EEF6EB]/30 p-4 text-black font-normal text-sm border-r border-[#63B846]/20 last:border-r-0">
-                    {col.efficiency}
-                  </td>
-                ))}
+                {specsColumns.map((col, idx) => {
+                  const isLastCol = idx === specsColumns.length - 1;
+                  return (
+                    <td key={idx} className={`bg-[#EEF6EB]/30 p-4 text-black font-normal text-xl border-b border-black ${isLastCol ? '' : 'border-r'}`}>
+                      {col.efficiency}
+                    </td>
+                  );
+                })}
               </tr>
 
               {/* Temp Coeff Row */}
-              <tr className="border-b border-[#63B846]/20 hover:bg-[#EEF6EB]/80 transition-colors h-[100px]">
-                <td className="bg-[#A0CF44] text-black font-semibold p-4 text-sm border-r border-[#63B846]/20">
+              <tr className="hover:bg-[#EEF6EB]/80 transition-colors h-[100px]">
+                <td className="bg-[#A0CF44] text-black font-normal p-4 text-xl border-r border-b border-black">
                   Temp Coeff
                 </td>
-                {specsColumns.map((col, idx) => (
-                  <td key={idx} className="bg-[#EEF6EB]/30 p-4 text-black font-normal text-sm border-r border-[#63B846]/20 last:border-r-0">
-                    {col.tempCoeff}
-                  </td>
-                ))}
+                {specsColumns.map((col, idx) => {
+                  const isLastCol = idx === specsColumns.length - 1;
+                  return (
+                    <td key={idx} className={`bg-[#EEF6EB]/30 p-4 text-black font-normal text-xl border-b border-black ${isLastCol ? '' : 'border-r'}`}>
+                      {col.tempCoeff}
+                    </td>
+                  );
+                })}
               </tr>
 
               {/* Degradation Row */}
-              <tr className="border-b border-[#63B846]/20 hover:bg-[#EEF6EB]/80 transition-colors h-[100px]">
-                <td className="bg-[#A0CF44] text-black font-semibold p-4 text-sm border-r border-[#63B846]/20">
+              <tr className="hover:bg-[#EEF6EB]/80 transition-colors h-[100px]">
+                <td className="bg-[#A0CF44] text-black font-normal p-4 text-xl border-r border-b border-black">
                   Degradation
                 </td>
-                {specsColumns.map((col, idx) => (
-                  <td key={idx} className="bg-[#EEF6EB]/30 p-4 text-black font-normal text-sm border-r border-[#63B846]/20 last:border-r-0">
-                    {col.degradation}
-                  </td>
-                ))}
+                {specsColumns.map((col, idx) => {
+                  const isLastCol = idx === specsColumns.length - 1;
+                  return (
+                    <td key={idx} className={`bg-[#EEF6EB]/30 p-4 text-black font-normal text-xl border-b border-black ${isLastCol ? '' : 'border-r'}`}>
+                      {col.degradation}
+                    </td>
+                  );
+                })}
               </tr>
 
               {/* Warranty Row */}
               <tr className="hover:bg-[#EEF6EB]/80 transition-colors h-[100px]">
-                <td className="bg-[#A0CF44] text-black font-semibold p-4 text-sm border-r border-[#63B846]/20">
+                <td className="bg-[#A0CF44] text-black font-normal p-4 text-xl border-r border-black">
                   Warranty
                 </td>
-                {specsColumns.map((col, idx) => (
-                  <td key={idx} className="bg-[#EEF6EB]/30 p-4 text-black font-normal text-xs border-r border-[#63B846]/20 last:border-r-0">
-                    {col.warranty}
-                  </td>
-                ))}
+                {specsColumns.map((col, idx) => {
+                  const isLastCol = idx === specsColumns.length - 1;
+                  return (
+                    <td key={idx} className={`bg-[#EEF6EB]/30 p-4 text-black font-normal text-xl border-black ${isLastCol ? '' : 'border-r'}`}>
+                      {col.warranty}
+                    </td>
+                  );
+                })}
               </tr>
             </tbody>
           </table>
