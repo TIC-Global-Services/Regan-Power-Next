@@ -66,7 +66,7 @@ const SolarStatsAndIntro = () => {
         align="left"
         className="mt-16 md:mt-24"
         subtitleClass="text-xl md:text-2xl font-light text-black mb-2 block normal-case"
-        titleClass="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-tighter mb-12"
+        titleClass="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-tighter mb-4"
         paragraphsClass="text-center"
       />
     </section>

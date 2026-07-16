@@ -65,6 +65,8 @@ const InverterSlider = () => {
               title="Which Inverter Is Right For You"
               align="left"
               className="mb-0"
+              subtitleClass='text-2xl'
+              titleClass='text-[3.125rem]'
             />
           </div>
           <div className="lg:max-w-xl">

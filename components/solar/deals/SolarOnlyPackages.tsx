@@ -6,7 +6,6 @@ const solarPackages = [
     title: "Essentials",
     desc: "Reliable, rebate-ready, and built to last 25 years.",
     bgClass: "bg-[#EEF6EB]/50 border border-gray-100",
-    highlight: false,
     items: [
       { label: "Panels", value: "Tier-1 (Jinko, Canadian Solar, Risen)" },
       { label: "Inverter", value: "String — Sungrow or GoodWe" },
@@ -18,7 +17,6 @@ const solarPackages = [
     title: "Premium",
     desc: "Higher-output N-type panels and a battery-ready hybrid inverter.",
     bgClass: "bg-[#A0CF44] text-black",
-    highlight: true,
     items: [
       { label: "Panels", value: "Tier-1 premium (LONGi or JA Solar)" },
       { label: "Inverter", value: "Hybrid — Sungrow SH or GoodWe ET" },
@@ -30,7 +28,6 @@ const solarPackages = [
     title: "Signature",
     desc: "Top-tier panels, full smart-home integration, Tesla-ready.",
     bgClass: "bg-[#EEF6EB]/50 border border-gray-100",
-    highlight: false,
     items: [
       { label: "Panels", value: "Top-tier (LONGi Hi-MO X10 or Trina Vertex S+)" },
       { label: "Inverter", value: "Fronius GEN24 Plus" },

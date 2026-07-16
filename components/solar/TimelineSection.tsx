@@ -1,92 +1,63 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Reveal from '@/reuseables/Reveal';
+import Fade from '@/reuseables/fade';
 import CtaButton from '@/reuseables/CtaButton';
 import SectionHeader from '@/reuseables/SectionHeader';
 
 import consultationImg from '@/assets/solar/consultation.png';
-import installImg from '@/assets/solar_battery_charging.png'; // fallback or related visual
-
-const steps = [
-  {
-    num: "01",
-    title: "Free Consultation",
-    desc: "A 15-Minute Call With A Regen Energy Advisor. We Review Your Bill, Household Setup, And Goals. No Pressure, No Sales Script.",
-    img: consultationImg
-  },
-  {
-    num: "02",
-    title: "Engineering & Design",
-    desc: "Our CEC-accredited design team maps out your roof using high-res satellite imagery to size panels, strings, and inverter placement for maximum output.",
-    img: installImg
-  },
-  {
-    num: "03",
-    title: "Grid Approval & Paperwork",
-    desc: "We handle all grid connection applications and approvals with Synergy and Western Power, securing your export limit and feed-in approval.",
-    img: consultationImg
-  },
-  {
-    num: "04",
-    title: "Licensed Installation",
-    desc: "A WA-licensed installer crew completes your system installation in a single day. All work meets or exceeds clean energy council standards.",
-    img: installImg
-  },
-  {
-    num: "05",
-    title: "Safety Inspection",
-    desc: "An independent electrical inspector verifies the system meets WA electrical safety regulations before grid connection.",
-    img: consultationImg
-  },
-  {
-    num: "06",
-    title: "Switch-On & Handover",
-    desc: "We program the inverter, set up your mobile monitoring app, and switch your system on. You begin generating clean energy immediately.",
-    img: installImg
-  }
-];
 
 const TimelineSection = () => {
-  const [activeStep, setActiveStep] = useState(0);
-
   return (
     <section className="py-16 md:py-24 bg-white border-t border-gray-50">
       <div className="px-[5%] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start">
 
-          {/* Left Column: Timeline List */}
-          <div>
-            <SectionHeader
-              subtitle="From First Call To Switch-On"
-              title="Often In Two Weeks"
-              description="Every Regen Power Install Follows The Same Six-Step Process. Our In-House Team Handles The Engineering, Paperwork, And Physical Installation — There's No Subcontracting And No Handoff Between Companies."
-              align="left"
-              descClass="mb-8"
-            />
+          {/* Left Column */}
+          <div className="flex flex-col justify-between h-full">
 
-
-
-            {/* CTA Button */}
-            <Reveal className="mt-8">
-              <CtaButton
-                href="#quote-form"
-                text="Start With A Free Consultation"
-                textColor="text-white"
-
+            {/* Top: Header + CTA */}
+            <div>
+              <SectionHeader
+                subtitle="From First Call To Switch-On"
+                title="Often In Two Weeks"
+                description="Every Regen Power Install Follows The Same Six-Step Process. Our In-House Team Handles The Engineering, Paperwork, And Physical Installation — There's No Subcontracting And No Handoff Between Companies."
+                align="left"
               />
-            </Reveal>
+
+              <Reveal className="mt-8">
+                <CtaButton
+                  href="#quote-form"
+                  text="Start With A Free Consultation"
+                  textColor="text-black"
+                />
+              </Reveal>
+            </div>
+
+            {/* Bottom: Free Consultation blurb */}
+            <Fade delay={0.3}>
+              <div className="mt-16 lg:mt-24">
+                <h3 className="text-2xl md:text-[2rem] font-normal text-black mb-3 tracking-tight">
+                  Free Consultation
+                </h3>
+                <p className="text-sm md:text-xl leading-tight tracking-tight max-w-md">
+                  A 15-Minute Call With A Regen Energy Advisor. We Review Your Bill, Household Setup, And Goals. No Pressure, No Sales Script.
+                </p>
+              </div>
+            </Fade>
+
           </div>
 
-          {/* Right Column: Dynamic Portrait Image Frame */}
+          {/* Right Column: Portrait Image */}
           <div className="lg:sticky lg:top-28 flex justify-center">
-            <div className="relative w-full aspect-[4/5] max-h-[660px] max-w-[770px] rounded-[20px] overflow-hidden shadow-md">
+            <div className="relative w-full aspect-[4/6] max-h-[770px] max-w-[660px] rounded-[20px] overflow-hidden shadow-md">
               <Image
-                src={steps[activeStep].img}
-                alt={steps[activeStep].title}
+                src={consultationImg}
+                alt="Free consultation with a Regen Energy Advisor"
                 fill
-                className="object-cover transition-all duration-700 ease-in-out scale-100 hover:scale-103"
+                className="object-cover"
                 placeholder="blur"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />

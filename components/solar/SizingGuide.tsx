@@ -52,8 +52,8 @@ const SizingGuide = () => {
           title="Solar System Be?"
           description="The Right System Size Depends On Four Things: Your Daily Power Use, Your Household Size, The Phase Type Of Your Home's Power Supply, And How Much Usable Roof Space You Have. Here's How To Work It Out."
           align="center"
-          className="mx-auto mb-12"
-          descClass="mb-8"
+          className="mx-auto mb-8"
+
         />
 
         {/* CTA Link */}
@@ -69,7 +69,7 @@ const SizingGuide = () => {
 
         {/* Table layout */}
         <div className="overflow-x-auto rounded-[24px] border border-gray-200 mt-12 mb-16 max-w-4xl mx-auto">
-          <table className="w-full border-collapse text-center min-w-[700px] bg-white">
+          <table className="w-full border-collapse text-center bg-white">
             <thead>
               <tr className="bg-[#A0CF44] text-black font-[var(--font-aeonik)]">
                 <th className="p-5 text-[15px] border border-gray-200">Daily use</th>

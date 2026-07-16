@@ -1,5 +1,6 @@
 import React from 'react';
 import SectionHeader from '@/reuseables/SectionHeader';
+import Reveal from '@/reuseables/Reveal';
 
 const specItems = [
   {
@@ -51,67 +52,68 @@ const SpecsAccordion = () => {
 
         {/* Tabular Layout */}
         <div className="flex flex-col border-t border-gray-100">
-          {specItems.map((spec) => (
-            <div
-              key={spec.id}
-              className="border-b border-gray-100 py-8"
-            >
-              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
-                {/* Column 1: Title */}
-                <div className="lg:w-[280px] shrink-0">
-                  <h3 className="text-2xl md:text-3xl font-medium text-black leading-tight">
-                    {spec.title}
-                  </h3>
-                </div>
+          {specItems.map((spec, idx) => (
+            <Reveal key={spec.id} delay={idx * 0.1}>
+              <div
+                className="border-b border-gray-100 py-8"
+              >
+                <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
+                  {/* Column 1: Title */}
+                  <div className="lg:w-[280px] shrink-0">
+                    <h3 className="text-2xl md:text-3xl text-black leading-tight">
+                      {spec.title}
+                    </h3>
+                  </div>
 
-                {/* Column 2: Value & Description */}
-                <div className="flex-grow max-w-xl">
-                  <span className="text-xl md:text-2xl font-semibold text-black block mb-3 font-[var(--font-aeonik)]">
-                    {spec.value}
-                  </span>
-                  <p className="text-sm md:text-base text-gray-600 leading-relaxed font-light">
-                    {spec.desc}
-                  </p>
-                </div>
+                  {/* Column 2: Value & Description */}
+                  <div className="flex-grow max-w-md">
+                    <span className="text-xl md:text-2xl text-black block mb-3 font-[var(--font-aeonik)]">
+                      {spec.value}
+                    </span>
+                    <p className="text-sm md:text-base leading-tight">
+                      {spec.desc}
+                    </p>
+                  </div>
 
-                {/* Column 3: Visual Graphic (if showImage) */}
-                <div className="lg:w-[280px] shrink-0 flex lg:justify-end items-center">
-                  {spec.showImage ? (
-                    <div className="relative bg-gradient-to-br from-[#D7E6F5] to-[#EEF5FC] rounded-[20px] p-4 w-[280px] h-[120px] flex items-center justify-between border border-blue-100/30 shadow-sm">
-                      {/* 3D-angled Solar Panel SVG */}
-                      <div className="relative w-[110px] h-[90px] flex items-center justify-center">
-                        <svg width="100" height="80" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-md">
-                          {/* Panel Frame */}
-                          <polygon points="10,60 50,15 90,30 50,75" fill="#1e293b" stroke="#475569" strokeWidth="1.5" />
-                          <polygon points="12,58 49,17 88,31 51,72" fill="#0f172a" />
-                          {/* Panel Grid Lines */}
-                          <line x1="30" y1="37" x2="70" y2="52" stroke="#334155" strokeWidth="1" />
-                          <line x1="20" y1="49" x2="60" y2="64" stroke="#334155" strokeWidth="1" />
-                          <line x1="40" y1="26" x2="80" y2="41" stroke="#334155" strokeWidth="1" />
+                  {/* Column 3: Visual Graphic (if showImage) */}
+                  <div className="lg:w-[280px] shrink-0 flex lg:justify-end items-center">
+                    {spec.showImage ? (
+                      <div className="relative bg-gradient-to-br from-[#D7E6F5] to-[#EEF5FC] rounded-[20px] p-4 w-[280px] h-[120px] flex items-center justify-between border border-blue-100/30 shadow-sm">
+                        {/* 3D-angled Solar Panel SVG */}
+                        <div className="relative w-[110px] h-[90px] flex items-center justify-center">
+                          <svg width="100" height="80" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-md">
+                            {/* Panel Frame */}
+                            <polygon points="10,60 50,15 90,30 50,75" fill="#1e293b" stroke="#475569" strokeWidth="1.5" />
+                            <polygon points="12,58 49,17 88,31 51,72" fill="#0f172a" />
+                            {/* Panel Grid Lines */}
+                            <line x1="30" y1="37" x2="70" y2="52" stroke="#334155" strokeWidth="1" />
+                            <line x1="20" y1="49" x2="60" y2="64" stroke="#334155" strokeWidth="1" />
+                            <line x1="40" y1="26" x2="80" y2="41" stroke="#334155" strokeWidth="1" />
 
-                          <line x1="30" y1="37" x2="30" y2="60" stroke="#334155" strokeWidth="1" />
-                          <line x1="50" y1="15" x2="50" y2="75" stroke="#334155" strokeWidth="1" />
-                          <line x1="70" y1="30" x2="70" y2="53" stroke="#334155" strokeWidth="1" />
-                        </svg>
-                      </div>
-
-                      {/* Badge and lightning icon */}
-                      <div className="flex flex-col items-center gap-2 pr-2">
-                        <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center border border-blue-200">
-                          <span className="text-blue-600 text-xs">⚡</span>
+                            <line x1="30" y1="37" x2="30" y2="60" stroke="#334155" strokeWidth="1" />
+                            <line x1="50" y1="15" x2="50" y2="75" stroke="#334155" strokeWidth="1" />
+                            <line x1="70" y1="30" x2="70" y2="53" stroke="#334155" strokeWidth="1" />
+                          </svg>
                         </div>
-                        <span className="bg-white border border-[#D7E6F5] rounded-full px-2 py-0.5 text-[10px] font-semibold text-[#2563eb] shadow-sm font-[var(--font-aeonik)] whitespace-nowrap">
-                          {spec.value.toLowerCase()}
-                        </span>
+
+                        {/* Badge and lightning icon */}
+                        <div className="flex flex-col items-center gap-2 pr-2">
+                          <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center border border-blue-200">
+                            <span className="text-blue-600 text-xs">⚡</span>
+                          </div>
+                          <span className="bg-white border border-[#D7E6F5] rounded-full px-2 py-0.5 text-[10px] font-semibold text-[#2563eb] shadow-sm font-[var(--font-aeonik)] whitespace-nowrap">
+                            {spec.value.toLowerCase()}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    // Spacer to maintain alignment if no image (hidden on mobile, visible on desktop to keep columns aligned)
-                    <div className="hidden lg:block w-[280px]" />
-                  )}
+                    ) : (
+                      // Spacer to maintain alignment if no image (hidden on mobile, visible on desktop to keep columns aligned)
+                      <div className="hidden lg:block w-[280px]" />
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 

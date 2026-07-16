@@ -27,7 +27,7 @@ const CtaButton: React.FC<CtaButtonProps> = ({
 }) => {
   const content = (
     <>
-      <span className="pl-4 font-medium text-sm md:text-base tracking-wide whitespace-nowrap">
+      <span className="pl-4 text-sm md:text-base tracking-tight whitespace-nowrap">
         {text}
       </span>
       <div className="bg-[#63B846] text-black p-2 rounded-full group-hover:scale-105 group-hover:bg-[#63B846]/80 transition-all duration-300 flex items-center justify-center">

@@ -45,7 +45,7 @@ const SolarProcessFlow = () => {
           subtitle="Sun To Synergy Bill"
           title="In Four Steps"
           align="center"
-          className="mb-16"
+          className="mb-32"
         />
 
         {/* Horizontal Process Grid */}
@@ -64,13 +64,13 @@ const SolarProcessFlow = () => {
               </div>
 
               {/* Text detail */}
-              <div className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 flex-grow">
+              <div className="grid grid-cols-[auto_1fr] gap-x-3 flex-grow">
                 {/* Row 1 Col 1: Number */}
                 <div className="text-2xl text-[#63B846] font-semibold leading-none self-baseline">
                   {step.num}
                 </div>
                 {/* Row 1 Col 2: Title */}
-                <h3 className="text-lg md:text-xl font-medium text-black leading-tight self-baseline">
+                <h3 className="text-lg md:text-2xl font-medium text-black leading-tight self-baseline">
                   <span>{step.title}</span>
                   {index < steps.length - 1 && (
                     <span className="hidden lg:inline text-black font-bold tracking-tighter text-3xl ml-2">≫</span>

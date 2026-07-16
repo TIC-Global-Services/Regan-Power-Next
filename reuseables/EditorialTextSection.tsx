@@ -45,11 +45,11 @@ const EditorialTextSection: React.FC<EditorialTextSectionProps> = ({
         align={align}
         subtitleClass={subtitleClass}
         titleClass={titleClass}
-        className="mb-8"
+        className="mb-8 ml-24"
       />
 
       <Fade delay={0.2} duration={0.8}>
-        <div className={`max-w-4xl mx-auto text-lg md:text-3xl font-light leading-tight tracking-tight space-y-6 mt-12 ${paragraphsClass || (align === 'left' ? 'text-left' : align === 'right' ? 'text-right' : 'text-center')}`}>
+        <div className={`max-w-5xl mx-auto text-lg md:text-3xl font-light leading-tight tracking-tight mt-8 ${paragraphsClass || (align === 'left' ? 'text-left' : align === 'right' ? 'text-right' : 'text-center')}`}>
           {paragraphs.map((para, idx) => {
             const colorClass = para.isSecondary ? 'text-gray-400' : 'text-black';
             return (

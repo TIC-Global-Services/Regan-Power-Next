@@ -85,7 +85,7 @@ const StaggeredCardsGrid: React.FC<StaggeredCardsGridProps> = ({
                   );
                 }
 
-                const bgClass = item.isDark ? 'bg-[#3B3A36]' : 'bg-[#f6f6f6]';
+                const bgClass = item.isDark ? 'bg-[#3B3B33]' : 'bg-[#EBEBEB]';
                 const descColor = item.isDark ? 'text-white/90' : 'text-black';
 
                 return (
@@ -111,7 +111,7 @@ const StaggeredCardsGrid: React.FC<StaggeredCardsGridProps> = ({
                       </h4>
                     )}
 
-                    <p className={`text-sm md:text-base leading-snug mt-auto ${descColor}`}>
+                    <p className={`text-sm md:text-base leading-tight mt-auto ${descColor}`}>
                       {item.desc}
                     </p>
                   </Reveal>

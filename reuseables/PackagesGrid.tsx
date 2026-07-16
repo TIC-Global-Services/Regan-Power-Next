@@ -11,7 +11,6 @@ interface Package {
   title: string;
   desc: string;
   bgClass: string;
-  highlight: boolean;
   items: PackageItem[];
 }
 
@@ -44,34 +43,33 @@ const PackagesGrid: React.FC<PackagesGridProps> = ({
         />
 
         {/* 3-Column Card Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-center mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-start mx-auto">
           {packages.map((pkg, idx) => (
             <Reveal
               key={idx}
               delay={idx * 0.1}
-              className={`rounded-[32px] p-8 md:p-10 flex flex-col justify-between shadow-sm transition-all duration-300 hover:shadow-lg w-full max-w-[434px] min-h-[480px] lg:h-[540px] mx-auto
+              className={`rounded-[20px] p-8 md:p-10 flex flex-col justify-start shadow-sm transition-all duration-300 hover:shadow-lg w-full max-w-[434px] min-h-[480px] lg:h-[540px] overflow-hidden mx-auto
                 ${pkg.bgClass}
-                ${pkg.highlight ? 'scale-102 z-10 md:-translate-y-2' : ''}
               `}
             >
               {/* Title & Desc */}
               <div className="mb-6">
-                <h3 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight">
+                <h3 className="text-3xl md:text-[2.125rem] font-bold mb-1 tracking-tight">
                   {pkg.title}
                 </h3>
-                <p className={`text-sm md:text-base leading-tight ${pkg.highlight ? 'text-black/85' : 'text-gray-600'}`}>
+                <p className={`text-sm md:text-base leading-tight text-black max-w-xs`}>
                   {pkg.desc}
                 </p>
               </div>
 
               {/* Items List */}
-              <div className="space-y-4 md:space-y-5 flex-grow mb-2">
+              <div className="space-y-2 flex-grow">
                 {pkg.items.map((item, itemIdx) => (
                   <div key={itemIdx}>
-                    <h4 className="text-[0.6875rem] uppercase tracking-wider text-black/50 font-bold mb-1">
+                    <h4 className="text-xl font-bold text-black mb-0.5">
                       {item.label}
                     </h4>
-                    <p className="text-sm md:text-base leading-tight font-medium text-black">
+                    <p className="text-sm md:text-base leading-snug text-black/80 font-normal">
                       {item.value}
                     </p>
                   </div>

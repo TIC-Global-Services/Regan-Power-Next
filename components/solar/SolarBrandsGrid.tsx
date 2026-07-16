@@ -34,7 +34,6 @@ const SolarBrandsGrid = () => {
           description="All Our Panels Are BloombergNEF Tier-1, Trusted, Proven, And Built For The Long Run. These Are Manufacturers You Can Rely On 25 Years From Now. We Use N-Type TOPCon Cells, Today’s Standard For Performance. More Efficiency, Better Low-Light Output, And Less Degradation Than Older Tech."
           align="center"
           subtitleClass="font-normal text-[1.875rem] leading-[1.2]"
-          descClass="font-normal mb-8 leading-tight"
           className="mx-auto mb-12"
         />
 

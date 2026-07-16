@@ -29,16 +29,16 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   return (
     <div className={`w-full flex flex-col ${containerAlign} ${alignClass} ${className}`}>
       <Reveal>
-        <p className={`text-lg md:text-2xl tracking-tight font-normal mb-1 block ${subtitleClass}`}>
+        <p className={`text-lg md:text-[2.125rem] tracking-tight font-normal block ${subtitleClass}`}>
           {subtitle}
         </p>
-        <h2 className={`text-3xl md:text-4xl lg:text-[4rem] xl:text-[4.5rem] text-[#63B846] leading-none tracking-tight font-normal ${titleClass}`}>
+        <h2 className={`text-3xl md:text-4xl lg:text-[5rem] text-[#63B846] tracking-tight font-normal ${titleClass}`}>
           {title}
         </h2>
       </Reveal>
       {description && (
         <Fade delay={0.2}>
-          <p className={`text-sm md:text-base leading-tight mt-4 max-w-3xl ${descClass}`}>
+          <p className={`text-sm leading-tight tracking-tight mt-4 max-w-3xl ${descClass}`}>
             {description}
           </p>
         </Fade>
