@@ -32,7 +32,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         <p className={`text-lg md:text-2xl tracking-tight font-normal mb-1 block ${subtitleClass}`}>
           {subtitle}
         </p>
-        <h2 className={`text-3xl md:text-4xl lg:text-[4.5rem] text-[#63B846] leading-none tracking-tight font-normal ${titleClass}`}>
+        <h2 className={`text-3xl md:text-4xl lg:text-[4rem] xl:text-[4.5rem] text-[#63B846] leading-none tracking-tight font-normal ${titleClass}`}>
           {title}
         </h2>
       </Reveal>

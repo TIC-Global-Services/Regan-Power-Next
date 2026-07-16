@@ -72,7 +72,7 @@ const StaggeredCardsGrid: React.FC<StaggeredCardsGridProps> = ({
         />
 
         {/* Layout Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr mx-auto">
           {columns.map((column, colIdx) => (
             <div key={colIdx} className="flex flex-col gap-6 h-full justify-between">
               {column.items.map((item, itemIdx) => {
@@ -80,7 +80,7 @@ const StaggeredCardsGrid: React.FC<StaggeredCardsGridProps> = ({
                   return (
                     <div
                       key={itemIdx}
-                      className={`hidden md:block ${spacerHeightClass}`}
+                      className={`hidden lg:block ${spacerHeightClass}`}
                     />
                   );
                 }
@@ -92,10 +92,10 @@ const StaggeredCardsGrid: React.FC<StaggeredCardsGridProps> = ({
                   <Reveal
                     key={itemIdx}
                     delay={item.delay || 0.1}
-                    className={`${bgClass} rounded-[14px] p-6 md:p-7 flex flex-col justify-between w-full mx-auto shadow-sm hover:shadow-md transition-shadow ${cardWidthClass} ${cardHeightClass}`}
+                    className={`${bgClass} rounded-[14px] p-6 md:p-7 flex flex-col justify-between w-full mx-auto shadow-sm hover:shadow-md transition-shadow ${cardWidthClass} min-h-[240px] ${cardHeightClass}`}
                   >
                     <div className="flex flex-col">
-                      <h3 className="text-[#63B846] text-[3.125rem] leading-[1.0] tracking-tighter mb-1">
+                      <h3 className="text-[#63B846] text-[2.5rem] md:text-[3.125rem] leading-[1.0] tracking-tighter mb-1">
                         {item.title}
                       </h3>
                       {item.subtitle && (
@@ -111,7 +111,7 @@ const StaggeredCardsGrid: React.FC<StaggeredCardsGridProps> = ({
                       </h4>
                     )}
 
-                    <p className={`text-base leading-snug mt-auto ${descColor}`}>
+                    <p className={`text-sm md:text-base leading-snug mt-auto ${descColor}`}>
                       {item.desc}
                     </p>
                   </Reveal>

@@ -44,12 +44,12 @@ const PackagesGrid: React.FC<PackagesGridProps> = ({
         />
 
         {/* 3-Column Card Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center items-center mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-center mx-auto">
           {packages.map((pkg, idx) => (
             <Reveal
               key={idx}
               delay={idx * 0.1}
-              className={`rounded-[32px] p-8 md:p-10 flex flex-col justify-between shadow-sm transition-all duration-300 hover:shadow-lg w-full max-w-[434px] min-h-[480px] md:h-[540px] mx-auto
+              className={`rounded-[32px] p-8 md:p-10 flex flex-col justify-between shadow-sm transition-all duration-300 hover:shadow-lg w-full max-w-[434px] min-h-[480px] lg:h-[540px] mx-auto
                 ${pkg.bgClass}
                 ${pkg.highlight ? 'scale-102 z-10 md:-translate-y-2' : ''}
               `}
@@ -59,7 +59,7 @@ const PackagesGrid: React.FC<PackagesGridProps> = ({
                 <h3 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight">
                   {pkg.title}
                 </h3>
-                <p className={`text-sm leading-tight ${pkg.highlight ? 'text-black/85' : 'text-gray-600'}`}>
+                <p className={`text-sm md:text-base leading-tight ${pkg.highlight ? 'text-black/85' : 'text-gray-600'}`}>
                   {pkg.desc}
                 </p>
               </div>
