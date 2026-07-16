@@ -14,6 +14,7 @@ export interface HeroProps {
     isFullScreen?: boolean;
     subtitleColor?: string;
     descriptionColor?: string;
+    imageClass?: string;
     showOverlay?: boolean;
     titleColor?: string;
 }
@@ -27,6 +28,7 @@ const Hero: React.FC<HeroProps> = ({
     description,
     ctaText,
     ctaLink,
+    imageClass='object-contain',
     isFullScreen = true,
     subtitleColor = 'text-black',
     descriptionColor = 'text-black',
@@ -50,7 +52,7 @@ const Hero: React.FC<HeroProps> = ({
                         src={mediaSrc}
                         alt="Hero Background"
                         fill
-                        className="object-cover"
+                        className={imageClass}
                         priority
                     />
                 )}
