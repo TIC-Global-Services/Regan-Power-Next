@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionHeader from '@/reuseables/SectionHeader';
 import Reveal from '@/reuseables/Reveal';
-import { ArrowUpRight } from 'lucide-react';
+import CtaButton from '@/reuseables/CtaButton';
 
 const promos = [
   {
@@ -36,25 +36,25 @@ const DealsGrid = () => {
             />
           </div>
           <div className="lg:w-[45%]">
-            <p className="text-gray-700 leading-relaxed font-light text-sm md:text-base">
+            <p className="leading-tight font-light text-sm md:text-base">
               Regen Power Runs Seasonal And Campaign-Based Offers Across Solar, Battery, And Solar-Plus-Battery Bundles. Current Promotions Below — Changes Month To Month.
             </p>
           </div>
         </div>
 
         {/* Grid of 3 Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center items-stretch mx-auto mb-16">
+        <div className="flex justify-center gap-4 mx-auto mb-16">
           {promos.map((promo, idx) => (
             <Reveal
               key={idx}
               delay={idx * 0.1}
-              className="rounded-[32px] p-8 md:p-10 flex flex-col justify-between shadow-sm transition-all duration-300 hover:shadow-lg w-full max-w-[434px] min-h-[300px] bg-[#EEF6EB]/50 border border-gray-100 mx-auto"
+              className="rounded-[20px] p-8 md:p-10 flex flex-col justify-between shadow-sm transition-all duration-300 hover:shadow-lg w-[433px] h-[459px] bg-[#EEF6EB]/50 border border-gray-100 mx-auto"
             >
               <div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight text-[#63B846] leading-tight">
+                <h3 className="text-2xl md:text-3xl mb-4 tracking-tight text-[#63B846] leading-tight">
                   {promo.title}
                 </h3>
-                <p className="text-sm md:text-base text-gray-700 leading-relaxed font-light">
+                <p className="text-sm md:text-base text-[#888888] leading-tight font-light">
                   {promo.desc}
                 </p>
               </div>
@@ -64,12 +64,9 @@ const DealsGrid = () => {
 
         {/* Centered CTA */}
         <div className="flex justify-center">
-          <button className="flex items-center gap-2 bg-[#63B846] hover:bg-[#52a338] text-white px-8 py-4 rounded-full text-base font-medium transition-colors shadow-sm cursor-pointer">
-            Get This Bundle Quoted
-            <span className="bg-white/20 p-1.5 rounded-full">
-              <ArrowUpRight size={18} />
-            </span>
-          </button>
+          <CtaButton
+            text="Get This Bundle Quoted"
+          />
         </div>
 
       </div>

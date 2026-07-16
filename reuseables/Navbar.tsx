@@ -35,10 +35,27 @@ const navItems = [
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+  const [isVisible, setIsVisible] = useState(true);
+
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const menuLinksRef = useRef<HTMLUListElement | null>(null);
   const plusIconRef = useRef<HTMLDivElement | null>(null);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY.current && currentY > 80) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      lastScrollY.current = currentY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     if (overlayRef.current) {
@@ -122,7 +139,7 @@ const Navbar = () => {
   }, [openMenu, closeMenu]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full py-6 px-4 md:px-8">
+    <header className={`fixed top-0 left-0 right-0 z-50 w-full py-6 px-4 md:px-8 transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="px-[5%] flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0 z-50">
