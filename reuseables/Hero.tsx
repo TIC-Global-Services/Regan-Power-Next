@@ -1,5 +1,6 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
+import { LucideIcon } from 'lucide-react';
 import CtaButton from './CtaButton';
 
 export interface HeroProps {
@@ -17,6 +18,7 @@ export interface HeroProps {
     showOverlay?: boolean;
     titleColor?: string;
     heightClass?: string;
+    icon?: LucideIcon;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -34,6 +36,7 @@ const Hero: React.FC<HeroProps> = ({
     showOverlay = false,
     titleColor,
     heightClass,
+    icon,
 }) => {
     const height = heightClass || (isFullScreen ? 'h-screen min-h-[600px]' : 'md:h-[600px]');
     return (
@@ -83,6 +86,7 @@ const Hero: React.FC<HeroProps> = ({
                         href={ctaLink}
                         text={ctaText}
                         textColor="text-white"
+                        icon={icon}
                     />
                 </div>
             </div>

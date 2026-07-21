@@ -26,11 +26,12 @@ const navItems = [
     ],
   },
   { name: 'EV Charging', href: '#' },
-  { name: 'Commercial & Off Grid', href: '#' },
+  { name: 'Commercial & Off Grid', href: '/commercial-off-grid' },
+  { name: 'Off-Grid Solutions', href: '/off-grid-solutions' },
   { name: 'About Us', href: '#' },
-  { name: 'Reviews', href: '#' },
-  { name: 'Blogs', href: '#' },
-  { name: 'Press&Media', href: '#' },
+  { name: 'Reviews', href: '/reviews' },
+  { name: 'Blogs', href: '/blog' },
+  { name: 'Press&Media', href: '/press-media' },
 ];
 
 const Navbar = () => {
@@ -193,7 +194,7 @@ const Navbar = () => {
 
         {/* Contact Us Button (Desktop) */}
         <div className="hidden lg:flex">
-          <CtaButton href="#" text="Contact Us" textColor="text-black" />
+          <CtaButton href="/contact" text="Contact Us" textColor="text-black" />
         </div>
 
         {/* Mobile Menu Toggle */}
