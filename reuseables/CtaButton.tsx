@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, LucideIcon } from 'lucide-react';
 
 interface CtaButtonProps {
   href?: string;
@@ -12,6 +12,7 @@ interface CtaButtonProps {
   hoverClass?: string;
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
+  icon?: LucideIcon;
 }
 
 const CtaButton: React.FC<CtaButtonProps> = ({
@@ -23,7 +24,8 @@ const CtaButton: React.FC<CtaButtonProps> = ({
   borderClass = 'border border-[#63B846]',
   hoverClass = 'hover:bg-[#8dc63f] hover:text-white',
   className = '',
-  onClick
+  onClick,
+  icon: Icon = ArrowUpRight,
 }) => {
   const content = (
     <>
@@ -31,7 +33,7 @@ const CtaButton: React.FC<CtaButtonProps> = ({
         {text}
       </span>
       <div className="bg-[#63B846] text-black p-2 rounded-full group-hover:scale-105 group-hover:bg-[#63B846]/80 transition-all duration-300 flex items-center justify-center">
-        <ArrowUpRight size={16} strokeWidth={2.5} />
+        <Icon size={16} strokeWidth={2.5} />
       </div>
     </>
   );

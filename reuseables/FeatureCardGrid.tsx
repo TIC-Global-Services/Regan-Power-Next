@@ -82,7 +82,7 @@ const FeatureCardGrid: React.FC<FeatureCardGridProps> = ({
             </h3>
           )}
           {title && (
-            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] text-[#63B846] font-light leading-none tracking-tighter mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] text-[#63B846] leading-none tracking-tighter mb-4">
               {title}
             </h2>
           )}
@@ -122,41 +122,41 @@ const FeatureCardGrid: React.FC<FeatureCardGridProps> = ({
                 </div>
 
                 {/* Content */}
-                <div className={`relative z-10 h-full p-6 md:p-8 flex flex-col justify-between`}>
+                <div className="relative z-10 h-full p-6 md:p-8 flex flex-col">
 
-                  {/* All text content at TOP */}
-                  <div>
-                    {/* Title & Description */}
-                    <div className={`transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isActive ? 'opacity-100 translate-y-0' : 'md:opacity-70 md:translate-y-2'}`}>
-                      <h4 className={`text-[1.75rem] text-white font-normal tracking-tight transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isActive ? 'mb-3 md:text-3xl' : 'mb-0 md:mb-3 md:text-xl'}`}>
-                        {card.title}
-                      </h4>
-                      <p className={`text-white/80 text-sm md:text-[15px] leading-relaxed max-w-[85%] font-light transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isActive ? 'opacity-100 max-h-40' : 'opacity-0 max-h-0 md:max-h-0 overflow-hidden'}`}>
-                        {card.description}
-                      </p>
+                  {/* Spacer — fills space when inactive so title sits at bottom */}
+                  {!isActive && <div className="flex-1" />}
+
+                  {/* Title — always visible; bottom when inactive, top when active */}
+                  <h4 className={`text-white font-normal tracking-tight transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isActive ? 'text-[1.75rem] md:text-3xl mb-3' : 'text-[1.75rem] md:text-xl mb-0'}`}>
+                    {card.title}
+                  </h4>
+
+                  {/* Description — always visible */}
+                  <p className={`text-white text-sm md:text-[15px] leading-tight max-w-[85%] font-light transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] opacity-100`}>
+                    {card.description}
+                  </p>
+
+                  {/* Footer — only shown when active */}
+                  {isActive && (card.footerTitle || card.footerDescription) && (
+                    <div className="mt-4">
+                      {card.footerTitle && (
+                        <h5 className="text-white font-semibold tracking-tight text-xl mb-0.5 whitespace-nowrap">
+                          {card.footerTitle}
+                        </h5>
+                      )}
+                      {card.footerDescription && (
+                        <p className="text-white text-sm tracking-tight font-light">
+                          {card.footerDescription}
+                        </p>
+                      )}
                     </div>
+                  )}
 
-                    {/* Footer Title & Description (also at top, below main text) */}
-                    {(card.footerTitle || card.footerDescription) && (
-                      <div className={`mt-4 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isActive ? 'opacity-100 max-h-40 translate-y-0' : 'opacity-0 max-h-0 overflow-hidden md:translate-y-4'}`}>
-                        {card.footerTitle && (
-                          <h5 className="text-white font-semibold tracking-tight text-xl mb-0.5 whitespace-nowrap">
-                            {card.footerTitle}
-                          </h5>
-                        )}
-                        {card.footerDescription && (
-                          <p className="text-white/80 text-sm tracking-tight font-light">
-                            {card.footerDescription}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Read More at BOTTOM — only shown when showReadMore is true */}
+                  {/* Read More at bottom — only when active */}
                   {showReadMore && isActive && (
-                    <div className='flex items-end'>
-                      <p className='text-[#63B846] flex gap-2 items-center'>Read more <span className="text-lg"><MoveRight size={20} color='#63B846' strokeWidth={3} /></span></p>
+                    <div className="flex items-end mt-auto">
+                      <p className="text-[#63B846] flex gap-2 items-center">Read more <span className="text-lg"><MoveRight size={20} color='#63B846' strokeWidth={3} /></span></p>
                     </div>
                   )}
                 </div>

@@ -25,7 +25,7 @@ const brands = [
 const SolarBrandsGrid = () => {
   return (
     <section className="py-16 md:py-24 bg-white border-t border-gray-100">
-      <div className="px-[5%] max-w-6xl mx-auto">
+      <div className="px-[5%] mx-auto">
 
         {/* Header Block */}
         <SectionHeader

@@ -1,14 +1,15 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
+import { LucideIcon } from 'lucide-react';
 import CtaButton from './CtaButton';
 
 export interface HeroProps {
     mediaSrc: string | StaticImageData;
     videoFile?: string;
     mediaType?: 'image' | 'video';
-    topSubtitle: string;
-    mainTitle: string;
-    description: string;
+    topSubtitle: React.ReactNode;
+    mainTitle: React.ReactNode;
+    description: React.ReactNode;
     ctaText: string;
     ctaLink: string;
     isFullScreen?: boolean;
@@ -17,6 +18,8 @@ export interface HeroProps {
     imageClass?: string;
     showOverlay?: boolean;
     titleColor?: string;
+    heightClass?: string;
+    icon?: LucideIcon;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -34,9 +37,12 @@ const Hero: React.FC<HeroProps> = ({
     descriptionColor = 'text-black',
     showOverlay = false,
     titleColor,
+    heightClass,
+    icon,
 }) => {
+    const height = heightClass || (isFullScreen ? 'h-screen min-h-[600px]' : 'md:h-[600px]');
     return (
-        <section className={`relative w-full flex flex-col justify-end pb-12 md:pb-10 h-screen min-h-[600px] ${!isFullScreen ? 'md:h-[600px]' : ''}`}>
+        <section className={`relative w-full flex flex-col justify-end pb-12 md:pb-10 ${height}`}>
             <div className="absolute inset-0 z-0">
                 {mediaType === 'video' ? (
                     <video
@@ -71,9 +77,9 @@ const Hero: React.FC<HeroProps> = ({
                     <h1 className={`text-5xl md:text-7xl lg:text-[3.750rem] font-medium mb-4 leading-none tracking-tight drop-shadow-md ${titleColor || 'text-[#8dc63f]'}`}>
                         {mainTitle}
                     </h1>
-                    <p className={`text-base md:text-xl leading-relaxed max-w-xl font-light tracking-tight drop-shadow-sm ${descriptionColor}`}>
+                    <div className={`text-base md:text-xl leading-relaxed max-w-xl font-light tracking-tight drop-shadow-sm ${descriptionColor}`}>
                         {description}
-                    </p>
+                    </div>
                 </div>
 
                 {/* CTA Button */}
@@ -82,6 +88,7 @@ const Hero: React.FC<HeroProps> = ({
                         href={ctaLink}
                         text={ctaText}
                         textColor="text-white"
+                        icon={icon}
                     />
                 </div>
             </div>

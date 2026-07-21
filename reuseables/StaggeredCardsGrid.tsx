@@ -54,7 +54,7 @@ const StaggeredCardsGrid: React.FC<StaggeredCardsGridProps> = ({
 
         {badge && (
           <div className={`mb-6 flex ${align === 'left' ? 'justify-start' : align === 'right' ? 'justify-end' : 'justify-center'}`}>
-            <span className="bg-gray-100 text-gray-900 text-xs font-semibold uppercase tracking-wider px-4 py-1.5 rounded-full">
+            <span className="bg-[#E1D9D4] text-[10px] uppercase tracking-tight px-4 py-1.5 rounded-full">
               {badge}
             </span>
           </div>
@@ -86,7 +86,7 @@ const StaggeredCardsGrid: React.FC<StaggeredCardsGridProps> = ({
                 }
 
                 const bgClass = item.isDark ? 'bg-[#3B3B33]' : 'bg-[#EBEBEB]';
-                const descColor = item.isDark ? 'text-white/90' : 'text-black';
+
 
                 return (
                   <Reveal
@@ -99,21 +99,22 @@ const StaggeredCardsGrid: React.FC<StaggeredCardsGridProps> = ({
                         {item.title}
                       </h3>
                       {item.subtitle && (
-                        <span className={`text-xs md:text-sm tracking-tight mt-1 ${item.isDark ? 'text-white/60' : 'text-black/55'}`}>
+                        <span className={`text-xs md:text-sm tracking-tight mt-1 ${item.isDark ? 'text-white' : 'text-black'}`}>
                           {item.subtitle}
                         </span>
                       )}
                     </div>
 
-                    {item.middleTitle && (
-                      <h4 className={`text-sm md:text-base font-bold tracking-tight mt-3 mb-2 ${item.isDark ? 'text-white' : 'text-black'}`}>
-                        {item.middleTitle}
-                      </h4>
-                    )}
-
-                    <p className={`text-sm md:text-base leading-tight mt-auto ${descColor}`}>
-                      {item.desc}
-                    </p>
+                    <div className="mt-auto">
+                      {item.middleTitle && (
+                        <h4 className={`text-sm md:text-xl tracking-tight mb-2 ${item.isDark ? 'text-white' : 'text-black'}`}>
+                          {item.middleTitle}
+                        </h4>
+                      )}
+                      <p className={`text-xs md:text-sm leading-tight text-[#888888]`}>
+                        {item.desc}
+                      </p>
+                    </div>
                   </Reveal>
                 );
               })}

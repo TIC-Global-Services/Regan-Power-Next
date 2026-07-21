@@ -12,6 +12,7 @@ export interface FullscreenSplitSectionProps {
   imageAlt?: string;
   imagePosition?: 'left' | 'right';
   textArrangement?: 'split' | 'center';
+  badge?: string;
 }
 
 const FullscreenSplitSection: React.FC<FullscreenSplitSectionProps> = ({
@@ -21,7 +22,8 @@ const FullscreenSplitSection: React.FC<FullscreenSplitSectionProps> = ({
   image,
   imageAlt = "Feature Image",
   imagePosition = 'left',
-  textArrangement = 'split'
+  textArrangement = 'split',
+  badge
 }) => {
   const isImageLeft = imagePosition === 'left';
   const isSplit = textArrangement === 'split';
@@ -29,12 +31,11 @@ const FullscreenSplitSection: React.FC<FullscreenSplitSectionProps> = ({
   return (
     <section className="bg-white border-t border-gray-50 min-h-screen flex items-stretch">
       <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch w-full min-h-screen">
-        
+
         {/* Image Column */}
-        <Reveal 
-          className={`relative w-full min-h-[350px] lg:h-screen overflow-hidden ${
-            isImageLeft ? 'lg:order-first' : 'lg:order-last'
-          }`}
+        <Reveal
+          className={`relative w-full min-h-[350px] lg:h-screen overflow-hidden ${isImageLeft ? 'lg:order-first' : 'lg:order-last'
+            }`}
         >
           <Image
             src={image}
@@ -46,28 +47,31 @@ const FullscreenSplitSection: React.FC<FullscreenSplitSectionProps> = ({
         </Reveal>
 
         {/* Text Column */}
-        <div 
-          className={`flex flex-col py-16 lg:py-24 px-8 md:px-16 ${
-            isImageLeft ? 'lg:pl-12 lg:pr-20' : 'lg:pl-20 lg:pr-12'
-          } text-left h-full lg:h-screen lg:min-h-screen ${
-            isSplit ? 'justify-between' : 'justify-center'
-          }`}
+        <div
+          className={`flex flex-col py-16 lg:py-24 px-8 md:px-16 ${isImageLeft ? 'lg:pl-12 lg:pr-20' : 'lg:pl-20 lg:pr-12'
+            } text-left h-full lg:h-screen lg:min-h-screen ${isSplit ? 'justify-between' : 'justify-center'
+            }`}
         >
           {isSplit ? (
             <>
               <div>
+                {badge && (
+                  <span className="mb-6 inline-flex rounded-full bg-[#E5DDD8] px-5 py-2 text-xs font-medium uppercase tracking-wide text-black">
+                    {badge}
+                  </span>
+                )}
                 <SectionHeader
                   subtitle={subtitle}
                   title={title}
                   align="left"
                   subtitleClass="text-base md:text-xl lg:text-2xl normal-case mb-4 block text-black font-medium"
-                  titleClass="text-4xl md:text-5xl lg:text-[4.5rem] font-normal leading-none tracking-tight mb-6 text-[#63B846]"
+                  titleClass="text-4xl md:text-5xl lg:text-[3.125rem] font-normal leading-none tracking-tight mb-6 text-[#63B846]"
                 />
               </div>
 
               <div className="mt-12 lg:mt-24">
                 <Fade delay={0.2}>
-                  <div className="text-sm md:text-xl leading-tight text-gray-800 font-light">
+                  <div className="text-sm md:text-xl leading-tight">
                     {description}
                   </div>
                 </Fade>
@@ -75,6 +79,11 @@ const FullscreenSplitSection: React.FC<FullscreenSplitSectionProps> = ({
             </>
           ) : (
             <div>
+              {badge && (
+                <span className="mb-6 inline-flex rounded-full bg-[#E5DDD8] px-5 py-2 text-xs font-medium uppercase tracking-wide text-black">
+                  {badge}
+                </span>
+              )}
               <SectionHeader
                 subtitle={subtitle}
                 title={title}

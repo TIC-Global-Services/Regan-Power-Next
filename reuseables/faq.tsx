@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { Plus, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -18,6 +18,8 @@ interface FAQProps {
     listTitle?: string;
     image?: string | StaticImageData;
     items?: FAQItem[];
+    defaultOpenIndex?: number | null;
+    enableSchema?: boolean;
 }
 
 const defaultItems: FAQItem[] = [
@@ -48,9 +50,30 @@ const FAQ = ({
     title = "Entries",
     listTitle = "Frequently Asked Questions",
     image = defaultImage,
-    items = defaultItems
+    items = defaultItems,
+    defaultOpenIndex = 0,
+    enableSchema = false,
 }: FAQProps) => {
-    const [openIndex, setOpenIndex] = useState<number | null>(0);
+    const [openIndex, setOpenIndex] = useState<number | null>(defaultOpenIndex);
+
+    const faqSchema = useMemo(() => {
+        if (!enableSchema) {
+            return null;
+        }
+
+        return {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: items.map((item) => ({
+                "@type": "Question",
+                name: item.question,
+                acceptedAnswer: {
+                    "@type": "Answer",
+                    text: item.answer,
+                },
+            })),
+        };
+    }, [enableSchema, items]);
 
     const toggleItem = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);
@@ -59,6 +82,12 @@ const FAQ = ({
     return (
         <Fade>
             <section className="py-16 md:py-24 bg-white px-[5%]">
+                {faqSchema ? (
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                    />
+                ) : null}
                 {/* Top Titles */}
                 <div className="mb-8 lg:mb-10">
                     <h3 className="text-xl md:text-2xl text-black font-normal tracking-tighter mb-1">
