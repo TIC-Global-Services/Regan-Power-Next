@@ -1,17 +1,33 @@
 import React from 'react';
+import Image, { StaticImageData } from 'next/image';
 import Hero from '@/reuseables/Hero';
-import heroBg from '@/assets/reviews/hero.png';
 
-const ReviewsHero = () => {
+export interface ReviewsHeroProps {
+    subtitle: string;
+    mainTitle: string;
+    description: string;
+    ctaText: string;
+    ctaLink: string;
+    backgroundImage: StaticImageData | string;
+}
+
+const ReviewsHero: React.FC<ReviewsHeroProps> = ({
+    subtitle,
+    mainTitle,
+    description,
+    ctaText,
+    ctaLink,
+    backgroundImage,
+}) => {
     return (
         <Hero
-            mediaSrc={heroBg}
+            mediaSrc={backgroundImage}
             mediaType="image"
-            topSubtitle="Real Stories. Real Savings."
-            mainTitle="Real Results."
-            description=""
-            ctaText="Get Your Free Quote"
-            ctaLink="#quote-form"
+            topSubtitle={subtitle}
+            mainTitle={mainTitle}
+            description={description}
+            ctaText={ctaText}
+            ctaLink={ctaLink}
             subtitleColor="text-white"
             descriptionColor="text-white"
             showOverlay={true}

@@ -3,14 +3,32 @@ import ReviewsHero from '@/components/reviews/ReviewsHero';
 import ReviewsIntro from '@/components/reviews/ReviewsIntro';
 import TestimonialGrid from '@/components/reviews/TestimonialGrid';
 import CtaSection from '@/reuseables/CtaSection';
+import heroImg from '@/assets/reviews/hero.png';
 import ctaBg from '@/assets/for_your_home.png';
 
 const ReviewsPage = () => {
     return (
         <div className="bg-white min-h-screen text-black">
-            <ReviewsHero />
-            <ReviewsIntro />
-            <TestimonialGrid />
+            <ReviewsHero
+                subtitle="Real Stories. Real Savings."
+                mainTitle="Real Results."
+                description=""
+                ctaText="Get Your Free Quote"
+                ctaLink="#quote-form"
+                backgroundImage={heroImg}
+            />
+
+            <ReviewsIntro
+                subtitle="Trusted By Thousands Across"
+                title="Australia"
+                description="Over The Years, We've Helped Thousands Of Australian Homes And Businesses Transition To Renewable Energy With Confidence. Our Commitment To Quality Workmanship, Premium Products, Transparent Advice, And Ongoing Customer Support Has Earned Consistently Positive Feedback From Customers Nationwide."
+            />
+
+            <TestimonialGrid
+                subtitle="Real"
+                title="Customer Stories"
+            />
+
             <CtaSection
                 subtitle="A Global Energy"
                 title="Footprint"

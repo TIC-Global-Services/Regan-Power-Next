@@ -17,7 +17,17 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
-const ContactForm = () => {
+export interface ContactFormProps {
+    subtitle?: string;
+    title?: string;
+    description?: string;
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({
+    subtitle = 'Get In',
+    title = 'Touch',
+    description = 'Off-Grid Projects Are Engineering Jobs. The First Conversation Is Technical, Not Transactional — Load Profile, Site Context, Generator History, Growth Plans, Water Needs If Any. Once We Understand The Problem, We Come Back With A System.',
+}) => {
     const {
         register,
         handleSubmit,
@@ -47,13 +57,14 @@ const ContactForm = () => {
         <section className="w-full px-[5%] py-12 md:py-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 max-w-7xl mx-auto items-start">
                 <div>
+                    <p className="text-2xl md:text-3xl font-light tracking-tight text-black mb-1">
+                        {subtitle}
+                    </p>
                     <h2 className="text-5xl md:text-6xl lg:text-7xl text-[#63B846] font-normal tracking-tighter leading-none mb-6">
-                        Contact Us
+                        {title}
                     </h2>
                     <p className="text-sm md:text-base text-black/85 leading-snug tracking-tight max-w-md">
-                        Off-Grid Projects Are Engineering Jobs. The First Conversation Is Technical, Not
-                        Transactional — Load Profile, Site Context, Generator History, Growth Plans, Water
-                        Needs If Any. Once We Understand The Problem, We Come Back With A System.
+                        {description}
                     </p>
                 </div>
 

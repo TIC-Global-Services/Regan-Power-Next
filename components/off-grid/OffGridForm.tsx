@@ -123,7 +123,7 @@ const OffGridForm: React.FC<OffGridFormProps> = ({
                                 src={image}
                                 alt={imageAlt}
                                 fill
-                                className="object-contain p-2"
+                                className="object-cover p-2"
                             />
                         </div>
                     </div>

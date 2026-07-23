@@ -1,17 +1,33 @@
 import React from 'react';
+import Image, { StaticImageData } from 'next/image';
 import Hero from '@/reuseables/Hero';
-import heroBg from '@/assets/blog/hero.png';
 
-const BlogHero = () => {
+export interface BlogHeroProps {
+    subtitle: string;
+    mainTitle: string;
+    description: string;
+    ctaText: string;
+    ctaLink: string;
+    backgroundImage: StaticImageData | string;
+}
+
+const BlogHero: React.FC<BlogHeroProps> = ({
+    subtitle,
+    mainTitle,
+    description,
+    ctaText,
+    ctaLink,
+    backgroundImage,
+}) => {
     return (
         <Hero
-            mediaSrc={heroBg}
+            mediaSrc={backgroundImage}
             mediaType="image"
-            topSubtitle="Insights On Solar,"
-            mainTitle="Batteries & Smarter Energy"
-            description="Explore Expert Insights, Practical Solar Guides, Renewable Energy Trends, And The Latest Innovations Helping Australian Homes And Businesses Transition To Cleaner, More Efficient Energy Solutions. Stay Informed With Industry Updates And Actionable Advice From The Regen Power Team."
-            ctaText="Get Your Free Quote"
-            ctaLink="#quote-form"
+            topSubtitle={subtitle}
+            mainTitle={mainTitle}
+            description={description}
+            ctaText={ctaText}
+            ctaLink={ctaLink}
             subtitleColor="text-white"
             descriptionColor="text-white"
             showOverlay={true}

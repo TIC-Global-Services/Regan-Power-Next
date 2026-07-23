@@ -60,9 +60,9 @@ const SolarStatsAndIntro = () => {
         title="Working Together."
         paragraphs={introParagraphs}
         align="left"
-        className="mt-16 md:mt-24"
-        subtitleClass="text-xl md:text-2xl font-light text-black mb-2 block normal-case"
-        titleClass="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-tighter mb-4"
+        className="mt-6 md:mt-12"
+        subtitleClass="text-xl md:text-2xl font-light text-black mb-2 block normal-case pl-24"
+        titleClass="text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tighter mb-4 pl-24"
         paragraphsClass="text-center"
         revealEffect
       />

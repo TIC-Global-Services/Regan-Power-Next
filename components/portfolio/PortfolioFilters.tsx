@@ -8,30 +8,6 @@ export interface FilterOption {
     value: string;
 }
 
-export const industryOptions: FilterOption[] = [
-    { label: 'Commercial Office', value: 'commercial-office' },
-    { label: 'Manufacturing', value: 'manufacturing' },
-    { label: 'Agriculture', value: 'agriculture' },
-    { label: 'Hospitality', value: 'hospitality' },
-    { label: 'Residential', value: 'residential' },
-    { label: 'EV Charging', value: 'ev-charging' },
-];
-
-export const systemSizeOptions: FilterOption[] = [
-    { label: 'Under 10kW', value: 'under-10kw' },
-    { label: '10kW - 30kW', value: '10kw-30kw' },
-    { label: '30kW - 100kW', value: '30kw-100kw' },
-    { label: '100kW+', value: '100kw-plus' },
-];
-
-export const locationOptions: FilterOption[] = [
-    { label: 'Perth Metro', value: 'perth-metro' },
-    { label: 'Fremantle', value: 'fremantle' },
-    { label: 'Mandurah', value: 'mandurah' },
-    { label: 'Bunbury', value: 'bunbury' },
-    { label: 'Regional WA', value: 'regional-wa' },
-];
-
 interface DropdownProps {
     label: string;
     options: FilterOption[];
@@ -63,13 +39,32 @@ const Dropdown: React.FC<DropdownProps> = ({ label, options, value, onChange }) 
     );
 };
 
-interface PortfolioFiltersProps {
-    onFilterChange?: (filters: { industry: string | null; size: string | null; location: string | null; search: string }) => void;
+export interface PortfolioFiltersProps {
+    industries: FilterOption[];
+    systemSizes: FilterOption[];
+    locations: FilterOption[];
+    searchPlaceholder?: string;
+    defaultIndustry?: string | null;
+    defaultSize?: string | null;
+    onFilterChange?: (filters: {
+        industry: string | null;
+        size: string | null;
+        location: string | null;
+        search: string;
+    }) => void;
 }
 
-const PortfolioFilters: React.FC<PortfolioFiltersProps> = ({ onFilterChange }) => {
-    const [industry, setIndustry] = useState<string | null>('commercial-office');
-    const [size, setSize] = useState<string | null>('30kw-100kw');
+const PortfolioFilters: React.FC<PortfolioFiltersProps> = ({
+    industries,
+    systemSizes,
+    locations,
+    searchPlaceholder = 'Search',
+    defaultIndustry = null,
+    defaultSize = null,
+    onFilterChange,
+}) => {
+    const [industry, setIndustry] = useState<string | null>(defaultIndustry);
+    const [size, setSize] = useState<string | null>(defaultSize);
     const [location, setLocation] = useState<string | null>(null);
     const [search, setSearch] = useState('');
 
@@ -87,8 +82,8 @@ const PortfolioFilters: React.FC<PortfolioFiltersProps> = ({ onFilterChange }) =
     const handleLocation = (v: string | null) => { setLocation(v); emit({ location: v }); };
     const handleSearch = (v: string) => { setSearch(v); emit({ search: v }); };
 
-    const industryLabel = industryOptions.find((o) => o.value === industry)?.label;
-    const sizeLabel = systemSizeOptions.find((o) => o.value === size)?.label;
+    const industryLabel = industries.find((o) => o.value === industry)?.label;
+    const sizeLabel = systemSizes.find((o) => o.value === size)?.label;
 
     return (
         <section className="w-full px-[5%] pt-12 md:pt-16 pb-4">
@@ -96,28 +91,28 @@ const PortfolioFilters: React.FC<PortfolioFiltersProps> = ({ onFilterChange }) =
                 <div className="flex flex-wrap items-center gap-3">
                     <Dropdown
                         label="By Industry"
-                        options={industryOptions}
+                        options={industries}
                         value={industry}
                         onChange={handleIndustry}
                     />
                     <Dropdown
                         label="By System Size"
-                        options={systemSizeOptions}
+                        options={systemSizes}
                         value={size}
                         onChange={handleSize}
                     />
                     <Dropdown
                         label="By Location"
-                        options={locationOptions}
+                        options={locations}
                         value={location}
                         onChange={handleLocation}
                     />
                     <div className="relative flex-1 min-w-[200px]">
                         <input
                             type="text"
-                          value={search}
+                            value={search}
                             onChange={(e) => handleSearch(e.target.value)}
-                            placeholder="Search"
+                            placeholder={searchPlaceholder}
                             className="w-full bg-transparent border border-[#A0CF44] rounded-full px-5 py-2.5 pr-10 text-sm text-black placeholder-black/60 focus:outline-none focus:border-[#63B846] transition-colors"
                         />
                         <Search
@@ -148,7 +143,7 @@ const PortfolioFilters: React.FC<PortfolioFiltersProps> = ({ onFilterChange }) =
                         )}
                         {location && (
                             <span className="inline-flex items-center gap-1.5 bg-[#D5E5C0] text-black text-xs md:text-sm font-medium tracking-tight px-3 py-1.5 rounded-full">
-                                {locationOptions.find((o) => o.value === location)?.label}
+                                {locations.find((o) => o.value === location)?.label}
                                 <button onClick={() => handleLocation(null)} aria-label="Remove filter" className="hover:opacity-70">
                                     <X size={14} strokeWidth={2.5} />
                                 </button>

@@ -1,17 +1,33 @@
 import React from 'react';
+import Image, { StaticImageData } from 'next/image';
 import Hero from '@/reuseables/Hero';
-import heroBg from '@/assets/portfolio/hero.png';
 
-const PortfolioHero = () => {
+export interface PortfolioHeroProps {
+    subtitle: string;
+    mainTitle: string;
+    description: string;
+    ctaText: string;
+    ctaLink: string;
+    backgroundImage: StaticImageData | string;
+}
+
+const PortfolioHero: React.FC<PortfolioHeroProps> = ({
+    subtitle,
+    mainTitle,
+    description,
+    ctaText,
+    ctaLink,
+    backgroundImage,
+}) => {
     return (
         <Hero
-            mediaSrc={heroBg}
+            mediaSrc={backgroundImage}
             mediaType="image"
-            topSubtitle="Our Work Across"
-            mainTitle="Western Australia"
-            description="80+ Installations Across Commercial, Residential, Off-Grid, And EV Charging—Designed In-House And Installed By Regen Electricians. Filter By Industry, Size, Or Location, And Explore Each Project In Detail."
-            ctaText="Get Your Free Quote"
-            ctaLink="#quote-form"
+            topSubtitle={subtitle}
+            mainTitle={mainTitle}
+            description={description}
+            ctaText={ctaText}
+            ctaLink={ctaLink}
             subtitleColor="text-white"
             descriptionColor="text-white"
             showOverlay={true}

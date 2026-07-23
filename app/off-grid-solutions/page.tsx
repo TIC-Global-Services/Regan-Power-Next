@@ -7,8 +7,9 @@ import IconCardGrid, { IconCard } from '@/reuseables/IconCardGrid';
 import HybridGenDetailSection from '@/components/off-grid/HybridGenDetailSection';
 import EditorialTextSection from '@/reuseables/EditorialTextSection';
 import WorldMap, { MapMarker } from '@/reuseables/WorldMap';
+import MicrogridSpecTable from '@/components/off-grid/MicrogridSpecTable';
 import AcquaSmartSection from '@/components/off-grid/AcquaSmartSection';
-import FeaturedArticle from '@/components/press/FeaturedArticle';
+import OffGridStory, { StoryCard } from '@/components/off-grid/OffGridStory';
 import OverlayCardGrid, { OverlayCard } from '@/reuseables/OverlayCardGrid';
 import OffGridFAQ from '@/components/off-grid/OffGridFAQ';
 import OffGridForm from '@/components/off-grid/OffGridForm';
@@ -153,7 +154,7 @@ const deploymentMarkers: MapMarker[] = [
     { name: 'Australia', top: '80%', left: '85%' },
 ];
 
-const trustCards: IconCard[] = [
+const trustCards: StoryCard[] = [
     {
         title: 'International Patent',
         description: 'PCT/AU2011/001068 — Power Management System And Method For Optimising Fuel Consumption. Inventor: Prof Chem Nayar (Regen Technologies Pty Ltd). Filed In Australia, Granted Internationally.',
@@ -200,6 +201,46 @@ const processSteps: OverlayCard[] = [
     {
         title: 'Handover & Remote Support',
         description: 'App + Dashboard Walkthrough; Performance Baseline; Remote Monitoring Activated; Maintenance Contracts Available — Particularly Important For Sites Without Local Trades Support.',
+    },
+];
+
+const microgridSpecs = [
+    { field: 'Power Output', detail: '15kW to 150kW per container, scalable beyond 1MW' },
+    { field: 'Voltage', detail: '400V three-phase, 50Hz' },
+    { field: 'Battery Storage', detail: '60–300kWh lithium iron phosphate (LFP), expandable' },
+    { field: 'Solar Input', detail: 'Up to 200kW PV per container, Tier-1 panels' },
+    { field: 'Wind Input', detail: 'Up to 10kW optional small wind generator' },
+    { field: 'Backup Generator', detail: 'Variable-speed diesel/gas (HybridGEN patented control)' },
+    { field: 'Container', detail: '20ft or 40ft ISO, fully weather-sealed, cyclone-rated' },
+    { field: 'Operating Temp', detail: '−20°C to +55°C' },
+    { field: 'Monitoring', detail: 'Real-time web + mobile dashboard, remote diagnostics' },
+    { field: 'Autonomy', detail: 'Multi-day battery autonomy depending on load profile' },
+];
+
+const microgridApplications = [
+    {
+        title: 'Mining & Exploration Camps',
+        description: 'Containerised power for exploration sites, drill camps, and processing facilities. Plug-and-play deployment to remote tenements.',
+    },
+    {
+        title: 'Telecom Towers',
+        description: 'Off-grid power for cellular base stations and communications infrastructure in fringe-of-grid and remote coverage areas.',
+    },
+    {
+        title: 'Resorts & Remote Lodges',
+        description: 'Reliable 24/7 power for eco-resorts, safari lodges, and tourism operations beyond the reach of the grid.',
+    },
+    {
+        title: 'Remote Communities',
+        description: 'Village-scale microgrids supporting homes, schools, medical centres, and water-treatment plants.',
+    },
+    {
+        title: 'Construction & Infrastructure',
+        description: 'Temporary or permanent power for road, rail, and resource projects where grid connection is impractical or delayed.',
+    },
+    {
+        title: 'Agriculture & Aquaculture',
+        description: 'Power for pumping stations, packing sheds, cold storage, and processing facilities on large rural properties.',
     },
 ];
 
@@ -356,6 +397,11 @@ const OffGridSolutionsPage = () => {
                 revealEffect
             />
 
+            <MicrogridSpecTable
+                specs={microgridSpecs}
+                applications={microgridApplications}
+            />
+
             <WorldMap
                 title="International Deployments"
                 markers={deploymentMarkers}
@@ -370,34 +416,15 @@ const OffGridSolutionsPage = () => {
                 cards={acquaSmartCards}
             />
 
-            <section className="py-16 md:py-24 bg-white">
-                <div className="px-[5%] mx-auto">
-                    <div className="text-center max-w-4xl mx-auto mb-12 md:mb-16">
-                        <p className="text-lg md:text-2xl text-black font-light tracking-tight mb-1">
-                            An Off-Grid Story
-                        </p>
-                        <h2 className="text-4xl md:text-6xl lg:text-[5rem] text-[#63B846] font-normal tracking-tighter leading-none">
-                            You Can Verify
-                        </h2>
-                        <p className="text-sm md:text-base text-black leading-relaxed mt-4 max-w-3xl mx-auto">
-                            Off-Grid Systems Are Bought On Trust. The Site Is Remote, The Buyer Can't Always Inspect The Work, And A System Failure 800km From Perth Is Expensive. Here's How We Earn That Trust — Verifiable, Documented, Decades-Long.
-                        </p>
-                    </div>
-
-                    <IconCardGrid
-                        cards={trustCards}
-                        layout={4}
-                        showHeader={false}
-                    />
-
-                    <FeaturedArticle
-                        image={profChemImg}
-                        title="Prof Chem Nayar"
-                        description="Founder & Chief Technology Officer — Pioneer In Renewable Energy Systems And Inventor Of Regen's Patented HybridGEN Technology, Driving Decades Of Innovation In Sustainable Off-Grid Power."
-                        showReadMore={false}
-                    />
-                </div>
-            </section>
+            <OffGridStory
+                subtitle="An Off-Grid Story"
+                title="You Can Verify"
+                description="Off-Grid Systems Are Bought On Trust. The Site Is Remote, The Buyer Can't Always Inspect The Work, And A System Failure 800km From Perth Is Expensive. Here's How We Earn That Trust — Verifiable, Documented, Decades-Long."
+                cards={trustCards}
+                featuredImage={profChemImg}
+                featuredTitle="Prof Chem Nayar"
+                featuredDescription="Founder & Chief Technology Officer — Pioneer In Renewable Energy Systems And Inventor Of Regen's Patented HybridGEN Technology, Driving Decades Of Innovation In Sustainable Off-Grid Power."
+            />
 
             <OverlayCardGrid
                 backgroundImage={poweredByImg}

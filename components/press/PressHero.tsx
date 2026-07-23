@@ -1,17 +1,33 @@
 import React from 'react';
+import Image, { StaticImageData } from 'next/image';
 import Hero from '@/reuseables/Hero';
-import heroBg from '@/assets/press/hero.png';
 
-const PressHero = () => {
+export interface PressHeroProps {
+    subtitle: string;
+    mainTitle: string;
+    description: string;
+    ctaText: string;
+    ctaLink: string;
+    backgroundImage: StaticImageData | string;
+}
+
+const PressHero: React.FC<PressHeroProps> = ({
+    subtitle,
+    mainTitle,
+    description,
+    ctaText,
+    ctaLink,
+    backgroundImage,
+}) => {
     return (
         <Hero
-            mediaSrc={heroBg}
+            mediaSrc={backgroundImage}
             mediaType="image"
-            topSubtitle="In The"
-            mainTitle="News & Media"
-            description="Explore How Regen Power Is Shaping The Future Of Energy Through Innovation, Impact, And Industry Leadership."
-            ctaText="Get Your Free Quote"
-            ctaLink="#quote-form"
+            topSubtitle={subtitle}
+            mainTitle={mainTitle}
+            description={description}
+            ctaText={ctaText}
+            ctaLink={ctaLink}
             subtitleColor="text-white"
             descriptionColor="text-white"
             showOverlay={true}

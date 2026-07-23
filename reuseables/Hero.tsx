@@ -31,7 +31,7 @@ const Hero: React.FC<HeroProps> = ({
     description,
     ctaText,
     ctaLink,
-    imageClass='object-contain',
+    imageClass='object-cover',
     isFullScreen = true,
     subtitleColor = 'text-black',
     descriptionColor = 'text-black',

@@ -3,7 +3,13 @@
 import React from 'react';
 import WorldMap, { MapMarker } from '@/reuseables/WorldMap';
 
-const markers: MapMarker[] = [
+export interface LocationMapProps {
+    subtitle?: string;
+    title?: string;
+    markers?: MapMarker[];
+}
+
+const defaultMarkers: MapMarker[] = [
     { name: 'Perth', top: '63%', left: '78%' },
     { name: 'Brisbane', top: '70%', left: '78%' },
     { name: 'Sydney', top: '70%', left: '88%' },
@@ -11,11 +17,15 @@ const markers: MapMarker[] = [
     { name: 'Victoria', top: '78%', left: '88%' },
 ];
 
-const LocationMap: React.FC = () => {
+const LocationMap: React.FC<LocationMapProps> = ({
+    subtitle = 'Our',
+    title = 'Locations',
+    markers = defaultMarkers,
+}) => {
     return (
         <WorldMap
-            subtitle="Our"
-            title="Locations"
+            subtitle={subtitle}
+            title={title}
             markers={markers}
         />
     );

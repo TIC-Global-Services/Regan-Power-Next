@@ -1,17 +1,33 @@
 import React from 'react';
+import Image, { StaticImageData } from 'next/image';
 import Hero from '@/reuseables/Hero';
-import heroBg from '@/assets/contact/hero.png';
 
-const ContactHero = () => {
+export interface ContactHeroProps {
+    subtitle: string;
+    mainTitle: string;
+    description: string;
+    ctaText: string;
+    ctaLink: string;
+    backgroundImage: StaticImageData | string;
+}
+
+const ContactHero: React.FC<ContactHeroProps> = ({
+    subtitle,
+    mainTitle,
+    description,
+    ctaText,
+    ctaLink,
+    backgroundImage,
+}) => {
     return (
         <Hero
-            mediaSrc={heroBg}
+            mediaSrc={backgroundImage}
             mediaType="image"
-            topSubtitle="Get In Touch With"
-            mainTitle="Regen Power"
-            description="From Your First Enquiry To Final Installation, Our Specialists Are Here To Guide You Every Step Of The Way. Contact Us Today For A Personalised Energy Solution."
-            ctaText="Get Your Free Quote"
-            ctaLink="#quote-form"
+            topSubtitle={subtitle}
+            mainTitle={mainTitle}
+            description={description}
+            ctaText={ctaText}
+            ctaLink={ctaLink}
             subtitleColor="text-white"
             descriptionColor="text-white"
             showOverlay={true}
