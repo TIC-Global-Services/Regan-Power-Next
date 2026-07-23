@@ -4,7 +4,7 @@ import CtaButton from '@/reuseables/CtaButton';
 
 export interface BatteryRangeCard {
   title: string;
-  description: string;
+  description?: string;
   image?: StaticImageData | string;
   ctaText?: string;
   ctaLink?: string;
@@ -14,7 +14,7 @@ export interface BatteryRangeCard {
 export interface BatteryRangeGridData {
   topSubtitle: string;
   title: string;
-  description: string;
+  description?: string;
   batteries: BatteryRangeCard[];
 }
 
@@ -42,17 +42,16 @@ const BatteryRangeGrid = ({ data }: { data: BatteryRangeGridData }) => {
         <p className="text-black text-sm md:text-lg leading-[1.2] whitespace-pre-line">{data.description}</p>
       </div>
 
-      {/* Bento Grid — 3 cols × 2 rows */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 justify-center auto-rows-[280px] md:auto-rows-[500px]">
+      {/* Bento Grid converted to Flex to center bottom row */}
+      <div className="flex flex-wrap justify-center gap-4 md:gap-5">
         {data.batteries.map((card, idx) => {
-          // if (card.isTextOnly) {
-          //   return (
-          //     <TextOnlyCard key={idx} card={card} />
-          //   );
-          // }
-
           return (
-            <ImageCard key={idx} card={card} />
+            <div 
+              key={idx} 
+              className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.85rem)] h-[280px] md:h-[500px]"
+            >
+              <ImageCard card={card} />
+            </div>
           );
         })}
       </div>
@@ -63,7 +62,7 @@ const BatteryRangeGrid = ({ data }: { data: BatteryRangeGridData }) => {
 /* ── Sub-components ─────────────────────────────────────── */
 
 const ImageCard = ({ card }: { card: BatteryRangeCard }) => (
-  <div className="relative rounded-[20px]  overflow-hidden group cursor-pointer">
+  <div className="relative rounded-[20px] overflow-hidden group cursor-pointer h-full w-full">
     {/* Background image */}
     {card.image && (
       <Image
@@ -79,7 +78,7 @@ const ImageCard = ({ card }: { card: BatteryRangeCard }) => (
     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-500" />
 
     {/* Text content pinned to the bottom */}
-    <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-7">
+    <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-7">
       <h4 className="text-white text-xl md:text-[1.875rem] font-medium tracking-tight leading-[1.2] mb-2">
         {card.title}
       </h4>

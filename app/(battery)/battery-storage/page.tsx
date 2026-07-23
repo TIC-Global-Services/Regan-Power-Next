@@ -3,7 +3,7 @@ import Hero from '@/components/battery/battery-storage/Hero';
 import DebsRebateBanner, { DebsRebateData } from '@/components/battery/battery-storage/DebsRebateBanner';
 import BatteryJargon, { BatteryJargonData } from '@/components/battery/battery-storage/BatteryJargon';
 import BatteryBillImpact, { BatteryBillImpactData } from '@/components/battery/battery-storage/BatteryBillImpact';
-import BatteryRangeGrid, { BatteryRangeGridData } from '@/components/battery/smarthome-battery-system/BatteryRangeGrid';
+import BatteryRangeGrid, { BatteryRangeGridData } from '@/components/battery/battery-storage/BatteryRangeGrid';
 import BatteryCapacityBlocks, { BatteryCapacityData } from '@/components/battery/battery-storage/BatteryCapacityBlocks';
 import BatteryFitCriteria, { BatteryFitData } from '@/components/battery/battery-storage/BatteryFitCriteria';
 import SolarBatteryMeaning, { SolarBatteryMeaningData } from '@/components/battery/battery-storage/SolarBatteryMeaning';
@@ -97,6 +97,7 @@ const batteryBillImpactData: BatteryBillImpactData = {
 const batteryRangeGridData: BatteryRangeGridData = {
     topSubtitle: 'Five Ways Into',
     title: 'Our Battery Range',
+
     batteries: [
         {
             title: 'Turn Your Home Into A Smart Energy Hub',
@@ -356,7 +357,7 @@ const BatteryStoragePage = () => {
 
 
             {/* 7. A Battery Is A Great Fit If */}
-            <BatteryFitCriteria data={batteryFitData} />
+            {/* <BatteryFitCriteria data={batteryFitData} /> */}
 
             {/* 8. What Solar + Battery Actually Means For You */}
             <SolarBatteryMeaning data={solarBatteryMeaningData} />

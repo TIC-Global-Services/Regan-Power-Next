@@ -4,7 +4,7 @@ import { Check, Minus, X } from 'lucide-react';
 export interface GreatFitData {
   topSubtitle: string;
   title: string;
-  description:string;
+  description?:string;
   goodFitTitle: string;
   goodFitItems: string[];
   conversationTitle: string;

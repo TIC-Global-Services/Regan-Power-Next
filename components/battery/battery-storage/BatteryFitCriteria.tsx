@@ -13,15 +13,19 @@ export interface BatteryFitData {
 
 const BatteryFitCriteria = ({ data }: { data: BatteryFitData }) => {
   return (
-    <FeatureSplitSection 
-      title={data.title}
-      subtitle={data.subtitle}
-      leftTitle={data.leftTitle}
-      leftItems={data.leftItems}
-      rightTitle={data.rightTitle}
-      rightItems={data.rightItems}
-    />
+    // <FeatureSplitSection 
+    //   title={data.title}
+    //   subtitle={data.subtitle}
+    //   leftTitle={data.leftTitle}
+    //   leftItems={data.leftItems}
+    //   rightTitle={data.rightTitle}
+    //   rightItems={data.rightItems}
+    // />
+    <div>
+      
+    </div>
   );
+
 };
 
 export default BatteryFitCriteria;
