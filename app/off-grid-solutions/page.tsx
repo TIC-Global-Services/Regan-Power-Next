@@ -204,44 +204,22 @@ const processSteps: OverlayCard[] = [
     },
 ];
 
-const microgridSpecs = [
-    { field: 'Power Output', detail: '15kW to 150kW per container, scalable beyond 1MW' },
-    { field: 'Voltage', detail: '400V three-phase, 50Hz' },
-    { field: 'Battery Storage', detail: '60–300kWh lithium iron phosphate (LFP), expandable' },
-    { field: 'Solar Input', detail: 'Up to 200kW PV per container, Tier-1 panels' },
-    { field: 'Wind Input', detail: 'Up to 10kW optional small wind generator' },
-    { field: 'Backup Generator', detail: 'Variable-speed diesel/gas (HybridGEN patented control)' },
-    { field: 'Container', detail: '20ft or 40ft ISO, fully weather-sealed, cyclone-rated' },
-    { field: 'Operating Temp', detail: '−20°C to +55°C' },
-    { field: 'Monitoring', detail: 'Real-time web + mobile dashboard, remote diagnostics' },
-    { field: 'Autonomy', detail: 'Multi-day battery autonomy depending on load profile' },
-];
+const microgridTableHeaders = {
+    col1: 'Field',
+    col2: 'Detail',
+};
 
-const microgridApplications = [
-    {
-        title: 'Mining & Exploration Camps',
-        description: 'Containerised power for exploration sites, drill camps, and processing facilities. Plug-and-play deployment to remote tenements.',
-    },
-    {
-        title: 'Telecom Towers',
-        description: 'Off-grid power for cellular base stations and communications infrastructure in fringe-of-grid and remote coverage areas.',
-    },
-    {
-        title: 'Resorts & Remote Lodges',
-        description: 'Reliable 24/7 power for eco-resorts, safari lodges, and tourism operations beyond the reach of the grid.',
-    },
-    {
-        title: 'Remote Communities',
-        description: 'Village-scale microgrids supporting homes, schools, medical centres, and water-treatment plants.',
-    },
-    {
-        title: 'Construction & Infrastructure',
-        description: 'Temporary or permanent power for road, rail, and resource projects where grid connection is impractical or delayed.',
-    },
-    {
-        title: 'Agriculture & Aquaculture',
-        description: 'Power for pumping stations, packing sheds, cold storage, and processing facilities on large rural properties.',
-    },
+const microgridTableContent = [
+    { value: 'Power Output', description: '15kW to 150kW per container, scalable beyond 1MW' },
+    { value: 'Voltage', description: '400V three-phase, 50Hz' },
+    { value: 'Battery Storage', description: '60–300kWh lithium iron phosphate (LFP), expandable' },
+    { value: 'Solar Input', description: 'Up to 200kW PV per container, Tier-1 panels' },
+    { value: 'Wind Input', description: 'Up to 10kW optional small wind generator' },
+    { value: 'Backup Generator', description: 'Variable-speed diesel/gas (HybridGEN patented control)' },
+    { value: 'Container', description: '20ft or 40ft ISO, fully weather-sealed, cyclone-rated' },
+    { value: 'Operating Temp', description: '−20°C to +55°C' },
+    { value: 'Monitoring', description: 'Real-time web + mobile dashboard, remote diagnostics' },
+    { value: 'Autonomy', description: 'Multi-day battery autonomy depending on load profile' },
 ];
 
 const acquaSmartCards: { title: string; description: string }[] = [
@@ -398,8 +376,8 @@ const OffGridSolutionsPage = () => {
             />
 
             <MicrogridSpecTable
-                specs={microgridSpecs}
-                applications={microgridApplications}
+                headers={microgridTableHeaders}
+                tableContent={microgridTableContent}
             />
 
             <WorldMap

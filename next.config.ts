@@ -1,7 +1,17 @@
 import type { NextConfig } from "next";
 
+const STRAPI_URL =
+  process.env.STRAPI_URL || "https://regen-strapi-production.up.railway.app";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: new URL(STRAPI_URL).hostname,
+      },
+    ],
+  },
 };
 
 export default nextConfig;

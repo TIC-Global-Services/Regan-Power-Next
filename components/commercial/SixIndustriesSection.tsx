@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-    Factory,
-    Building2,
-    Plus,
-    Store,
-    GraduationCap,
-    Sprout,
-    type LucideIcon,
-} from 'lucide-react';
+import Image, { StaticImageData } from 'next/image';
 import SectionHeader from '@/reuseables/SectionHeader';
 import Reveal from '@/reuseables/Reveal';
 
@@ -15,7 +7,7 @@ export interface Industry {
     title: string;
     description: string;
     caseStudy: string;
-    iconKey: 'manufacturing' | 'hospitality' | 'healthcare' | 'retail' | 'education' | 'agribusiness';
+    icon: StaticImageData | string;
 }
 
 interface SixIndustriesSectionProps {
@@ -23,15 +15,6 @@ interface SixIndustriesSectionProps {
     title: string;
     industries: Industry[];
 }
-
-const iconMap: Record<Industry['iconKey'], LucideIcon> = {
-    manufacturing: Factory,
-    hospitality: Building2,
-    healthcare: Plus,
-    retail: Store,
-    education: GraduationCap,
-    agribusiness: Sprout,
-};
 
 const SixIndustriesSection: React.FC<SixIndustriesSectionProps> = ({
     subtitle,
@@ -51,34 +34,34 @@ const SixIndustriesSection: React.FC<SixIndustriesSectionProps> = ({
                 />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-                    {industries.map((industry, idx) => {
-                        const Icon = iconMap[industry.iconKey];
-                        return (
-                            <Reveal
-                                key={idx}
-                                delay={idx * 0.08}
-                                className="bg-[#E5EFD5] rounded-[20px] p-6 md:p-8 flex flex-col min-h-[320px] md:min-h-[360px] hover:bg-[#D7E5C0] transition-colors duration-300"
-                            >
-                                <Icon
-                                    size={48}
-                                    strokeWidth={1.5}
-                                    className="text-black"
+                    {industries.map((industry, idx) => (
+                        <Reveal
+                            key={idx}
+                            delay={idx * 0.08}
+                            className="bg-[#E5EFD5] rounded-[20px] p-6 md:p-8 flex flex-col min-h-[320px] md:min-h-[360px] hover:bg-[#D7E5C0] transition-colors duration-300"
+                        >
+                            <div className="relative w-12 h-12 md:w-14 md:h-14">
+                                <Image
+                                    src={industry.icon}
+                                    alt={industry.title}
+                                    fill
+                                    className="object-contain"
                                 />
+                            </div>
 
-                                <div className="mt-auto pt-8">
-                                    <h3 className="text-2xl md:text-3xl font-normal text-black tracking-tight leading-tight mb-3">
-                                        {industry.title}
-                                    </h3>
-                                    <p className="text-sm md:text-base text-black/75 leading-snug tracking-tight mb-4">
-                                        {industry.description}
-                                    </p>
-                                    <p className="text-sm md:text-base text-black font-semibold leading-snug tracking-tight">
-                                        {industry.caseStudy}
-                                    </p>
-                                </div>
-                            </Reveal>
-                        );
-                    })}
+                            <div className="mt-auto pt-8">
+                                <h3 className="text-2xl md:text-3xl font-normal text-black tracking-tight leading-tight mb-3">
+                                    {industry.title}
+                                </h3>
+                                <p className="text-sm md:text-base text-black/75 leading-snug tracking-tight mb-4">
+                                    {industry.description}
+                                </p>
+                                <p className="text-sm md:text-base text-black font-semibold leading-snug tracking-tight">
+                                    {industry.caseStudy}
+                                </p>
+                            </div>
+                        </Reveal>
+                    ))}
                 </div>
             </div>
         </section>

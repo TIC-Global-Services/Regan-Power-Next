@@ -4,10 +4,10 @@ import PortfolioInteractive from '@/components/portfolio/PortfolioInteractive';
 import CtaSection from '@/reuseables/CtaSection';
 import heroBg from '@/assets/portfolio/hero.png';
 import ctaBg from '@/assets/for_your_home.png';
-import type { FilterOption } from '@/components/portfolio/PortfolioFilters';
-import type { PortfolioProject } from '@/components/portfolio/PortfolioGrid';
+import type { FilterOption, PortfolioCard } from '@/components/portfolio/PortfolioInteractive';
 
-const industries: FilterOption[] = [
+const filters: FilterOption[] = [
+    { label: 'All', value: 'all' },
     { label: 'Commercial Office', value: 'commercial-office' },
     { label: 'Manufacturing', value: 'manufacturing' },
     { label: 'Agriculture', value: 'agriculture' },
@@ -16,55 +16,21 @@ const industries: FilterOption[] = [
     { label: 'EV Charging', value: 'ev-charging' },
 ];
 
-const systemSizes: FilterOption[] = [
-    { label: 'Under 10kW', value: 'under-10kw' },
-    { label: '10kW - 30kW', value: '10kw-30kw' },
-    { label: '30kW - 100kW', value: '30kw-100kw' },
-    { label: '100kW+', value: '100kw-plus' },
-];
-
-const locations: FilterOption[] = [
-    { label: 'Perth Metro', value: 'perth-metro' },
-    { label: 'Fremantle', value: 'fremantle' },
-    { label: 'Mandurah', value: 'mandurah' },
-    { label: 'Bunbury', value: 'bunbury' },
-    { label: 'Regional WA', value: 'regional-wa' },
-];
-
-const projects: PortfolioProject[] = [
+const cards: PortfolioCard[] = [
     {
-        id: 1,
         title: 'Fremantle Cold Storage Facility',
-        slug: 'fremantle-cold-storage',
-        description:
-            'Industrial Manufacturing Facility In Metro Perth Cut Annual Energy Costs By 42% With A 75kW Solar System.',
-        image: { url: heroBg.src, alt: 'Fremantle Cold Storage Facility' },
-        industry: 'manufacturing',
-        systemSize: '30kw-100kw',
-        location: 'fremantle',
-        featured: true,
+        description: 'Industrial Manufacturing Facility In Metro Perth Cut Annual Energy Costs By 42% With A 75kW Solar System.',
+        image: heroBg,
     },
     {
-        id: 2,
         title: 'Perth CBD Office Tower',
-        slug: 'perth-cbd-office',
-        description: '',
-        image: { url: heroBg.src, alt: 'Perth CBD Office Tower' },
-        industry: 'commercial-office',
-        systemSize: '100kw-plus',
-        location: 'perth-metro',
-        featured: false,
+        description: 'A 150kW rooftop system powering a 12-storey commercial office tower in the Perth CBD.',
+        image: heroBg,
     },
     {
-        id: 3,
         title: 'Margaret River Winery',
-        slug: 'margaret-river-winery',
-        description: '',
-        image: { url: heroBg.src, alt: 'Margaret River Winery' },
-        industry: 'agriculture',
-        systemSize: '10kw-30kw',
-        location: 'regional-wa',
-        featured: false,
+        description: '30kW off-grid solar + battery system for a premium winery in the Margaret River region.',
+        image: heroBg,
     },
 ];
 
@@ -81,13 +47,8 @@ const PortfolioPage = () => {
             />
 
             <PortfolioInteractive
-                industries={industries}
-                systemSizes={systemSizes}
-                locations={locations}
-                searchPlaceholder="Search"
-                defaultIndustry="commercial-office"
-                defaultSize="30kw-100kw"
-                projects={projects}
+                filters={filters}
+                cards={cards}
             />
 
             <CtaSection

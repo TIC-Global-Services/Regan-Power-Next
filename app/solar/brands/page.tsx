@@ -1,64 +1,89 @@
-"use client";
+import React from "react";
+import { getBrandsPage } from "@/lib/strapi";
+import type {
+  BrandsHeroData,
+  BrandsPhilosophyData,
+  BrandsTier1MeansData,
+  BrandsGridData,
+  BrandsHybridSpecialtyData,
+  BrandsInvertersSliderData,
+  BrandsCriteriaListData,
+} from "@/lib/strapi-schemas/brands";
+import type { BrandsSpecsTableData } from "@/lib/strapi-schemas/brands";
 
-import React from 'react';
-import GetSolar from '@/reuseables/getsolar';
-import getSolarBg from '@/assets/solar/footer.png';
+import BrandsHeroSection from "@/components/solar/brands/BrandsHeroSection";
+import PhilosophySection from "@/components/solar/brands/PhilosophySection";
+import Tier1MeansSection from "@/components/solar/brands/Tier1MeansSection";
+import BrandsGridSection from "@/components/solar/brands/BrandsGridSection";
+import HybridSpecialtySection from "@/components/solar/brands/HybridSpecialtySection";
+import InvertersSliderSection from "@/components/solar/brands/InvertersSliderSection";
+import CriteriaListSection from "@/components/solar/brands/CriteriaListSection";
+import SpecsTableSection from "@/components/solar/brands/SpecsTableSection";
 
-// Section imports
-import Hero from '@/components/solar/brands/Hero';
-import Philosophy from '@/components/solar/brands/Philosophy';
-import Tier1Means from '@/components/solar/brands/Tier1Means';
-import SixBrandsGrid from '@/components/solar/brands/SixBrandsGrid';
-import SpecsTable from '@/components/solar/brands/SpecsTable';
-import HybridSpecialty from '@/components/solar/brands/HybridSpecialty';
-import InvertersSlider from '@/components/solar/brands/InvertersSlider';
-import CriteriaShortlist from '@/components/solar/brands/CriteriaShortlist';
-import FAQ from '@/components/solar/brands/FAQ';
-import LeadCaptureForm from '@/components/solar/LeadCaptureForm';
+import FAQ from "@/components/solar/brands/FAQ";
+import LeadCaptureForm from "@/components/solar/LeadCaptureForm";
+import GetSolar from "@/reuseables/getsolar";
+import getSolarBg from "@/assets/solar/footer.png";
 
-export default function SolarBrandsPage() {
+export const revalidate = 60;
+
+const SolarBrandsPage = async () => {
+  const { data } = await getBrandsPage();
+  const sections = data.sections ?? [];
+
+  const hero = sections.find(
+    (s) => s.__component === "brands.hero"
+  ) as BrandsHeroData | undefined;
+  const philosophy = sections.find(
+    (s) => s.__component === "brands.philosophy"
+  ) as BrandsPhilosophyData | undefined;
+  const tier1 = sections.find(
+    (s) => s.__component === "brands.tier1-means"
+  ) as BrandsTier1MeansData | undefined;
+  const brandsGrid = sections.find(
+    (s) => s.__component === "brands.brands-grid"
+  ) as BrandsGridData | undefined;
+  const hybrid = sections.find(
+    (s) => s.__component === "brands.hybrid-specialty"
+  ) as BrandsHybridSpecialtyData | undefined;
+  const inverters = sections.find(
+    (s) => s.__component === "brands.inverters-slider"
+  ) as BrandsInvertersSliderData | undefined;
+  const criteria = sections.find(
+    (s) => s.__component === "brands.criteria-list"
+  ) as BrandsCriteriaListData | undefined;
+  const specsTable = sections.find(
+    (s) => s.__component === "brands.specs-table"
+  ) as BrandsSpecsTableData | undefined;
+
   return (
     <div className="bg-white min-h-screen text-black">
-      {/* 1. Hero Banner */}
-      <Hero />
+      {hero && <BrandsHeroSection data={hero} />}
+      {philosophy && <PhilosophySection data={philosophy} />}
+      {tier1 && <Tier1MeansSection data={tier1} />}
+      {brandsGrid && <BrandsGridSection data={brandsGrid} />}
 
-      {/* 2. Philosophy */}
-      <Philosophy />
+      {specsTable && <SpecsTableSection data={specsTable} />}
 
-      {/* 3. What Tier-1 Means */}
-      <Tier1Means />
+      {hybrid && <HybridSpecialtySection data={hybrid} />}
+      {inverters && <InvertersSliderSection data={inverters} />}
+      {criteria && <CriteriaListSection data={criteria} />}
 
-      {/* 4. Six Tier-1 Panel Brands */}
-      <SixBrandsGrid />
-
-      {/* 5. Side By Side Specs Table */}
-      <SpecsTable />
-
-      {/* 6. Specializing in Hybrid Inverters */}
-      <HybridSpecialty />
-
-      {/* 7. Brand Cards Slider (Inverters) */}
-      <InvertersSlider />
-
-      {/* 8. Shortlist Criteria */}
-      <CriteriaShortlist />
-
-      {/* 9. FAQ Accordions */}
       <FAQ />
 
-      {/* 10. Lead Capture Quote Form */}
       <div id="quote-form">
         <LeadCaptureForm />
       </div>
 
-      {/* 11. Bottom CTA Banner */}
       <GetSolar
         subtitle="Get A Solar System Designed"
         mainTitle="For Your Home"
-        description="Tell us a few details about your home and power use, and one of our Perth-based CEC-accredited designers will build a system tailored to your roof, your household, and your budget. Free, no-obligation, and no high-pressure sales calls — just a proper engineering recommendation."
+        description="Tell us a few details about your home and power use, and one of our Perth-based CEC-accredited designers will build a system tailored to your roof, your household, and your budget. Free, no-obligation, and no high-pressure sales calls \u2014 just a proper engineering recommendation."
         buttonText="Get My Free Quote"
         bgImage={getSolarBg}
       />
     </div>
   );
-}
+};
+
+export default SolarBrandsPage;

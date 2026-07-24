@@ -1,0 +1,98 @@
+"use client";
+
+import React, { useId, useState } from "react";
+import { Plus, X } from "lucide-react";
+import type { FaqCategorizedFaqData, FaqCategory } from "@/lib/strapi-schemas/faq";
+
+interface Props {
+  data: FaqCategorizedFaqData;
+}
+
+function categoryKey(cat: FaqCategory): string {
+  return cat.categoryId || `cat-${cat.id}`;
+}
+
+export default function CategorizedFaqSection({ data }: Props) {
+  const [activeKey, setActiveKey] = useState(
+    data.categories.length > 0 ? categoryKey(data.categories[0]) : ""
+  );
+  const [openIndex, setOpenIndex] = useState(0);
+  const accordionId = useId();
+
+  const activeCategory =
+    data.categories.find((c) => categoryKey(c) === activeKey) ?? data.categories[0];
+
+  if (!activeCategory) return null;
+
+  return (
+    <section className="bg-white px-[5%] py-16 md:py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="overflow-x-auto pb-3">
+          <div className="flex min-w-max gap-4">
+            {data.categories.map((category) => {
+              const key = categoryKey(category);
+              const active = key === activeKey;
+
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  aria-controls={`${accordionId}-${key}`}
+                  onClick={() => {
+                    setActiveKey(key);
+                    setOpenIndex(0);
+                  }}
+                  className={`rounded-full px-7 py-4 text-2xl tracking-tight transition-colors ${
+                    active
+                      ? "bg-[#CBEFB8] text-black"
+                      : "bg-transparent text-black/90 hover:bg-[#EEF6EB]"
+                  }`}
+                >
+                  {category.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div
+          id={`${accordionId}-${categoryKey(activeCategory)}`}
+          role="tabpanel"
+          className="mx-auto mt-12 max-w-5xl"
+        >
+          <div className="space-y-2">
+            {(activeCategory.items ?? []).map((item, index) => {
+              const isOpen = openIndex === index;
+
+              return (
+                <div key={item.id} className="border-b-2 border-[#EEF6EB]">
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                    className="flex w-full items-start justify-between gap-6 py-5 text-left"
+                  >
+                    <span className="text-2xl tracking-tight text-black md:text-[2rem]">
+                      {item.question}
+                    </span>
+                    <span className="mt-1 flex-shrink-0 text-[#63B846]">
+                      {isOpen ? <X size={24} strokeWidth={2} /> : <Plus size={24} strokeWidth={2} />}
+                    </span>
+                  </button>
+
+                  {isOpen && (
+                    <p className="max-w-4xl pb-6 pr-12 text-base leading-tight text-black/75 md:text-xl">
+                      {item.answer}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

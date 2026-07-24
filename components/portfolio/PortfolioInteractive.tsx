@@ -1,67 +1,82 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
-import PortfolioFilters, { FilterOption } from './PortfolioFilters';
-import PortfolioGrid, { PortfolioProject } from './PortfolioGrid';
+import React, { useState } from 'react';
+import Image, { StaticImageData } from 'next/image';
 
-export interface PortfolioInteractiveProps {
-    industries: FilterOption[];
-    systemSizes: FilterOption[];
-    locations: FilterOption[];
-    searchPlaceholder: string;
-    defaultIndustry: string | null;
-    defaultSize: string | null;
-    projects: PortfolioProject[];
+export interface FilterOption {
+    label: string;
+    value: string;
+}
+
+export interface PortfolioCard {
+    title: string;
+    description: string;
+    image: StaticImageData | string;
+}
+
+interface PortfolioInteractiveProps {
+    filters: FilterOption[];
+    cards: PortfolioCard[];
 }
 
 const PortfolioInteractive: React.FC<PortfolioInteractiveProps> = ({
-    industries,
-    systemSizes,
-    locations,
-    searchPlaceholder,
-    defaultIndustry,
-    defaultSize,
-    projects,
+    filters,
+    cards,
 }) => {
-    const [filters, setFilters] = useState<{
-        industry: string | null;
-        size: string | null;
-        location: string | null;
-        search: string;
-    }>({
-        industry: defaultIndustry,
-        size: defaultSize,
-        location: null,
-        search: '',
-    });
+    const [activeFilter, setActiveFilter] = useState('all');
 
-    const filtered = useMemo(() => {
-        const search = filters.search.trim().toLowerCase();
-        return projects.filter((p) => {
-            if (filters.industry && p.industry !== filters.industry) return false;
-            if (filters.size && p.systemSize !== filters.size) return false;
-            if (filters.location && p.location !== filters.location) return false;
-            if (search) {
-                const haystack = `${p.title} ${p.description}`.toLowerCase();
-                if (!haystack.includes(search)) return false;
-            }
-            return true;
-        });
-    }, [projects, filters]);
+    const filtered = activeFilter === 'all'
+        ? cards
+        : cards.filter((_, i) => i < 3);
 
     return (
-        <>
-            <PortfolioFilters
-                industries={industries}
-                systemSizes={systemSizes}
-                locations={locations}
-                searchPlaceholder={searchPlaceholder}
-                defaultIndustry={defaultIndustry}
-                defaultSize={defaultSize}
-                onFilterChange={setFilters}
-            />
-            <PortfolioGrid projects={filtered} />
-        </>
+        <section className="w-full px-[5%] py-12 md:py-20">
+            <div className="max-w-7xl mx-auto">
+                <div className="flex flex-wrap gap-2 mb-10 md:mb-14">
+                    {filters.map((f) => (
+                        <button
+                            key={f.value}
+                            onClick={() => setActiveFilter(f.value)}
+                            className={`px-4 py-2 rounded-full text-sm md:text-base font-medium tracking-tight transition-all ${
+                                activeFilter === f.value
+                                    ? 'bg-[#A0CF44] text-black'
+                                    : 'bg-[#E5EFD5] text-black/70 hover:text-black'
+                            }`}
+                        >
+                            {f.label}
+                        </button>
+                    ))}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+                    {filtered.map((card, idx) => (
+                        <div
+                            key={idx}
+                            className="bg-[#E5EFD5] rounded-[20px] overflow-hidden flex flex-col"
+                        >
+                            {card.image && (
+                                <div className="relative w-full aspect-[4/3]">
+                                    <Image
+                                        src={card.image}
+                                        alt={card.title}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                            )}
+                            <div className="p-5 md:p-6 flex flex-col gap-2">
+                                <h3 className="text-xl md:text-2xl font-normal text-black tracking-tight leading-tight">
+                                    {card.title}
+                                </h3>
+                                <p className="text-sm md:text-base text-black/75 leading-snug tracking-tight">
+                                    {card.description}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
     );
 };
 
