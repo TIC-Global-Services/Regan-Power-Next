@@ -21,7 +21,6 @@ export interface HeroProps {
     heightClass?: string;
     icon?: LucideIcon;
 }
-
 const Hero: React.FC<HeroProps> = ({
     mediaSrc,
     videoFile,

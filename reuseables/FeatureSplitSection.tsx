@@ -19,6 +19,10 @@ export interface FeatureItem {
 }
 
 export interface FeatureSplitSectionProps {
+    title?:string
+    leftTitle?:string
+    rightTitle?:string
+    leftItems?:string[]
     subtitle?: string;
     heading?: string;
     introText?: string;
@@ -28,6 +32,10 @@ export interface FeatureSplitSectionProps {
 }
 
 const FeatureSplitSection: React.FC<FeatureSplitSectionProps> = ({
+    title,
+    leftTitle,
+    rightTitle,
+    leftItems,
     subtitle = "Our Ten-Brand Shortlist,",
     heading = "And How It Got Away.",
     introText = "Every Brand On This Page Has To Meet Five Criteria Before We Put It On A Perth Roof. We'd Rather Turn Down A Volume Deal Than Install Something We Wouldn't Want Supporting For The Next 25 Years.",

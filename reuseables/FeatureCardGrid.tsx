@@ -8,6 +8,7 @@ import productReviewBg from '@/assets/home/zerointrest/productReviewBg.png';
 import productReviewRating from '@/assets/home/zerointrest/productReviewRating.png';
 import { ArrowBigRight, ArrowRight, MoveRight } from 'lucide-react';
 import Fade from './fade';
+import CtaButton from './CtaButton';
 
 export interface FeatureCardItem {
   title: string;
@@ -25,6 +26,9 @@ interface FeatureCardGridProps {
   bottomSubtitle?: string;
   cards?: FeatureCardItem[];
   showReadMore?: boolean
+  showPersonalisedquoteCta?: boolean
+  centerButton?:boolean
+  centerButtonText?:string
 }
 
 const defaultCards: FeatureCardItem[] = [
@@ -60,9 +64,12 @@ const defaultCards: FeatureCardItem[] = [
 const FeatureCardGrid: React.FC<FeatureCardGridProps> = ({
   topSubtitle = "Three Ways To Pay",
   title = "Including One With Zero Interest",
-  bottomSubtitle = "The Upfront Cost Of A Premium Solar Or Battery System Doesn't Need To Come Out Of Your Savings On Day One. Here's How Regen Power Customers Typically Structure Payment.",
+  bottomSubtitle = "",
   cards = defaultCards,
-  showReadMore = true
+  showReadMore = true,
+  showPersonalisedquoteCta=false,
+  centerButton=false,
+  centerButtonText=""
 }) => {
   // Track which card is expanded (0 is active initially)
   const [activeIndex, setActiveIndex] = useState(0);
@@ -77,17 +84,17 @@ const FeatureCardGrid: React.FC<FeatureCardGridProps> = ({
         {/* Header section */}
         <div className="text-center mb-12 md:mb-16">
           {topSubtitle && (
-            <h3 className="text-xl md:text-[1.35rem] text-black font-normal tracking-tight mb-1">
+            <h3 className="text-xl md:text-[2.125rem] text-black font-normal tracking-tight">
               {topSubtitle}
             </h3>
           )}
           {title && (
-            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] text-[#63B846] leading-none tracking-tighter mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-[5rem] text-[#63B846] leading-none tracking-tighter mb-2">
               {title}
             </h2>
           )}
           {bottomSubtitle && (
-            <p className="text-xs md:text-sm text-black max-w-3xl mx-auto leading-relaxed font-medium">
+            <p className="text-xs md:text-xl text-black max-w-5xl mx-auto leading-[1.1] font-medium">
               {bottomSubtitle}
             </p>
           )}
@@ -164,6 +171,17 @@ const FeatureCardGrid: React.FC<FeatureCardGridProps> = ({
             );
           })}
         </div>
+        {showPersonalisedquoteCta && (
+        <div className='flex justify-end items-center gap-3 mt-10' >
+          <p className='text-xs tracking-tight lg:text-sm'>Want an estimate for your home? Tell us your address and usage and we'll model it</p>
+          <CtaButton text='Get a personalised quote' />
+        </div>
+        )}
+        {centerButton && (
+        <div className='flex justify-center items-center gap-3 mt-10' >
+          <CtaButton text={centerButtonText} />
+        </div>
+        )}
       </section>
     </Fade>
   );

@@ -1,0 +1,81 @@
+import React from 'react';
+import CtaButton from '@/reuseables/CtaButton';
+import Fade from '@/reuseables/fade';
+
+export interface CapacityCard {
+  title: string;
+  description: string;
+  isPrimary?: boolean;
+}
+
+export interface BatteryCapacityData {
+  topSubtitle: string;
+  title: string;
+  description: string;
+  cards: CapacityCard[];
+  footerText: string;
+  ctaText: string;
+  ctaLink: string;
+}
+
+const BatteryCapacityBlocks = ({ data }: { data: BatteryCapacityData }) => {
+  return (
+    <Fade>
+      <section className="bg-white py-16 md:py-24 px-[5%]">
+        <div className="">
+          {/* Section Header */}
+          <div className="text-center mb-10 md:mb-14">
+            <h3 className="text-xl md:text-[2rem] text-black font-normal tracking-tight leading-[1.1]">
+              {data.topSubtitle}
+            </h3>
+            <h2 className="text-4xl md:text-5xl lg:text-[5rem] text-[#63B846] font-light leading-none tracking-tighter ">
+              {data.title}
+            </h2>
+            <p className="text-xs md:text-xl text-black max-w-4xl mx-auto leading-relaxed font-medium whitespace-pre-line">
+              {data.description}
+            </p>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+            {data.cards.map((card, idx) => (
+              <div
+                key={idx}
+                className={`rounded-[16px] p-7 md:p-8 flex flex-col justify-center items-center  min-h-[280px] transition-shadow duration-300 hover:shadow-md ${
+                  card.isPrimary
+                    ? 'bg-[#63B846] text-black'
+                    : 'bg-[#EEF6EB] border border-[#63B846]/20 text-black'
+                }`}
+              >
+                <h4
+                  className={`text-xl md:text-[2rem] text-center font-normal whitespace-pre-line leading-[1.1] tracking-tight mb-3 ${
+                    card.isPrimary ? 'text-black' : 'text-black'
+                  }`}
+                >
+                  {card.title}
+                </h4>
+                <p
+                  className={`text-sm md:text-xl text-center leading-relaxed ${
+                    card.isPrimary ? 'text-black' : 'text-black'
+                  }`}
+                >
+                  {card.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Footer Text + CTA */}
+          <div className="text-center">
+            <p className="text-sm md:text-xl text-black font-medium mb-6 max-w-4xl mx-auto">
+              {data.footerText}
+            </p>
+            <CtaButton href={data.ctaLink} text={data.ctaText} textColor="text-black" />
+          </div>
+        </div>
+      </section>
+    </Fade>
+  );
+};
+
+export default BatteryCapacityBlocks;

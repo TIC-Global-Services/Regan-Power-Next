@@ -10,27 +10,28 @@ import CtaButton from './CtaButton';
 const navItems = [
   {
     name: 'Solar System',
-    href: '#',
+    href: '/solar',
     subItems: [
-      { name: 'Residential Solar', href: '/solar' },
-      { name: 'Solar Panels', href: '#' },
-      { name: 'Inverters', href: '#' },
+      { name: 'Brand we carry', href: '/brands' },
+      { name: 'Solar Deals', href: '/deals' },
+      { name: 'Government rebates', href: '/government-rebates' },
     ],
   },
   {
     name: 'Battery Storage',
-    href: '#',
+    href: '/battery-storage',
     subItems: [
-      { name: 'Tesla Powerwall', href: '#' },
-      { name: 'BYD Battery', href: '#' },
+      { name: 'Battery Storage', href: '/battery-storage' },
+      { name: 'Smart home battery system', href: '/smart-home-battery-system' },
     ],
   },
-  { name: 'EV Charging', href: '#' },
+  { name: 'EV Charging', href: '/ev-charging' },
   { name: 'Commercial & Off Grid', href: '/commercial-off-grid' },
   { name: 'Off-Grid Solutions', href: '/off-grid-solutions' },
   { name: 'About Us', href: '#' },
   { name: 'Reviews', href: '/reviews' },
-  { name: 'Blogs', href: '/blog' },
+  { name: 'Research & Development', href: '/research-and-development' },
+  { name: 'Portfolio', href: '/portfolio' },
   { name: 'Press&Media', href: '/press-media' },
 ];
 
@@ -141,7 +142,7 @@ const Navbar = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 w-full py-6 px-4 md:px-8 transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
-      <div className="px-[5%] flex items-center justify-between">
+      <div className="px-[2%] flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0 z-50">
           <Image
@@ -155,7 +156,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center bg-[#63B84666] backdrop-blur-md rounded-full px-2 py-1.5 shadow-sm border-1 border-[#63B846]">
-          <ul className="flex items-center text-sm font-medium text-black">
+          <ul className="flex items-center text-[12px] font-medium text-black">
             {navItems.map((item, index) => (
               <li key={index} className="relative group px-3 py-2">
                 <Link 
